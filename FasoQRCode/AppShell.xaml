@@ -4,12 +4,39 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FasoQRCode"
-    Shell.FlyoutBehavior="Disabled"
-    Title="FasoQRCode">
+    xmlns:pages="clr-namespace:FasoQRCode.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="Faso QRCode">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Scan" Icon="qr_code.png">
+        <ShellContent Title="Faso QR Code" ContentTemplate="{DataTemplate local:MainPage}" />
+    </FlyoutItem>
+
+
+
+    <FlyoutItem Title="Create my QR" Icon="write.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:PageCreateQR}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings" Icon="settings.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:PageSettings}"/>
+    </FlyoutItem>
+
+    <!-- Standalone MenuItem with icon -->
+
+
+    <MenuItem Text="Share" IconImageSource="share.png"
+              Command="{Binding LogoutCommand}" />
+    
+    <FlyoutItem Title="More About Burkina Faso" Icon="burkina_faso_know_more.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:PageAboutBurkinaFaso}" />
+    </FlyoutItem>
+
+    <MenuItem Text="Logout" IconImageSource="logout.png"
+            Command="{Binding LogoutCommand}" />
+
+
+
+
 
 </Shell>

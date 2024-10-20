@@ -1,24 +1,21 @@
-﻿namespace FasoQRCode
+﻿using CommunityToolkit.Mvvm.Input;
+using FasoQRCode.Views;
+
+namespace FasoQRCode
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = this;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        [RelayCommand]
+        public async Task GoToTab()
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            //await Navigation.PushAsync(new PageMainTabbed());
+            //await Navigation.PushAsync(new FlyoutPage());
         }
     }
 

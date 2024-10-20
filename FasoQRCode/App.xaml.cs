@@ -1,4 +1,6 @@
-﻿namespace FasoQRCode
+﻿using FasoQRCode.Views;
+
+namespace FasoQRCode
 {
     public partial class App : Application
     {
@@ -6,6 +8,7 @@
         {
             InitializeComponent();
 
+            //MainPage = new NavigationPage(new MainPage());
             MainPage = new AppShell();
         }
     }
