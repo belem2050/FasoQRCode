@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>FasoQRCode</ApplicationTitle>
+		<ApplicationTitle>Faso CodeReader</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.fasoqrcode</ApplicationId>
@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\burkina_icon.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -78,6 +78,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -97,5 +98,13 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+	<AndroidKeyStore>True</AndroidKeyStore>
+	<AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
+	<AndroidSigningKeyAlias>myapp</AndroidSigningKeyAlias>
+	<AndroidSigningKeyPass>abdoul</AndroidSigningKeyPass>
+    <AndroidSigningStorePass>abdoul</AndroidSigningStorePass>
+</PropertyGroup>
 
 </Project>

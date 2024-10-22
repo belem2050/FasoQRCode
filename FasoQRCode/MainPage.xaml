@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="FasoQRCode.MainPage">
 
     <Grid>
@@ -12,7 +13,22 @@
             <RowDefinition Height="Auto"/>
             <!-- Row for slider and labels -->
         </Grid.RowDefinitions>
+        <!-- Placeholder for Camera View -->
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               Text="Camera not connected yet!"
+               FontSize="Title"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="Gray" />
 
+        <zxing:CameraBarcodeReaderView Grid.Row="0"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="1"
+                                  Grid.RowSpan="3"
+                                  x:Name="barcodeReader"
+                                  BarcodesDetected="barcodeReader_BarcodesDetected"/>
         <!-- Button Grid -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -33,31 +49,27 @@
                     FontAttributes="Bold"
                     FontAutoScalingEnabled="True"
                     ImageSource="image.png"
-                    HeightRequest="50"/>
+                    HeightRequest="50"
+                    Command="{Binding Path=ScanbyImageCommand, Mode=OneWay}"/>
             
             <Button Grid.Column="1"
                     HorizontalOptions="Center"
                     ImageSource="flash.png"
                     BackgroundColor="Transparent"
-                    HeightRequest="50"/>
+                    HeightRequest="50"
+                    Command="{Binding Path=ToggleTorchCommand, Mode=OneWay}"/>
             
             <Button Grid.Column="2"
                     Margin="0,0,50,0"
                     HorizontalOptions="Start"
                     BackgroundColor="Transparent"
                     ImageSource="rotate.png"
-                    HeightRequest="50"/>
+                    HeightRequest="50"
+                    Command="{Binding Path=SwapCameraCommand, Mode=OneWay}"/>
         </Grid>
 
-        <!-- Placeholder for Camera View -->
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               Text="Camera not connected yet!"
-               FontSize="Title"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               TextColor="Gray" />
+
+     
 
         <!-- Slider and Labels Row -->
         <StackLayout Grid.Row="2"
@@ -66,8 +78,7 @@
                      Orientation="Horizontal"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="End">
-            <Button Text="-"
-                    VerticalOptions="End"
+            <Button VerticalOptions="End"
                     FontSize="Title"
                     HorizontalOptions="Start"
                     HeightRequest="55"
@@ -81,16 +92,15 @@
                     Minimum="0"
                     Maximum="100"
                     Margin="0,0,0,0"
-                    Value="150"/>
+                    Value="{Binding Path=ZoomRate, Mode=OneWay}"/>
 
-            <Button Text="+"
-                   VerticalOptions="Center"
-                   FontSize="Title"
-                   HorizontalOptions="End"
-                   Margin="0,0,0,0"
-                   HeightRequest="55"
-                   BackgroundColor="Transparent"
-                   ImageSource="zoom_in.png"/>
+            <Button VerticalOptions="Center"
+                    FontSize="Title"
+                    HorizontalOptions="End"
+                    Margin="0,0,0,0"
+                    HeightRequest="55"
+                    BackgroundColor="Transparent"
+                    ImageSource="zoom_in.png"/>
 
         </StackLayout>
     </Grid>
