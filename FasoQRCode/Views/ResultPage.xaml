@@ -1,0 +1,55 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FasoQRCode.Views.ResultPage"
+             Title="Scan Result"
+             BackgroundColor="#f4f4f9">
+
+    <VerticalStackLayout Padding="20" Spacing="30" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+        <!-- Card-like Container for Result Text -->
+        <Frame BackgroundColor="White"
+               CornerRadius="15"
+               Padding="20"
+               HasShadow="True"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="FillAndExpand"
+               Margin="0,20,0,10">
+            <Label Text="{Binding ResultText}" 
+                   FontSize="Medium" 
+                   TextColor="#333333"
+                   HorizontalOptions="Center" 
+                   VerticalOptions="CenterAndExpand" 
+                   LineBreakMode="WordWrap"
+                   HorizontalTextAlignment="Center"/>
+        </Frame>
+
+        <!-- Button Section with Rounded Buttons -->
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
+            <Button Text="Copy"
+                    BackgroundColor="#007ACC"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Command="{Binding CopyAsyncCommand}" />
+
+            <Button Text="Open Link"
+                    BackgroundColor="#34C759"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Command="{Binding OpenLinkAsyncCommand}" />
+
+            <Button Text="Share"
+                    BackgroundColor="#FF9500"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Command="{Binding ShareAsyncCommand}" />
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,14 +1,115 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FasoQRCode.Views.PageAboutBurkinaFaso"
-             Title="Burkina Faso">
-    <VerticalStackLayout>
-        <Label 
-            Text="Burkina Faso"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            FontSize="Header"
-            FontAttributes="Bold"/>
-    </VerticalStackLayout>
+             Title="Burkina Faso"
+             BackgroundColor="#f4f4f9">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Title -->
+            <Label Text="The History of Burkina Faso"
+                   FontSize="Title"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   HorizontalOptions="Center" />
+
+            <!-- Brief History Section -->
+            <Frame BackgroundColor="White" CornerRadius="15" Padding="15" HasShadow="True">
+                <Label Text="Burkina Faso, formerly known as Upper Volta, gained independence from France in 1960. The country was renamed by Thomas Sankara in 1984, representing 'Land of Upright People.' Known for its rich cultural heritage and resilience, Burkina Faso has undergone significant social and political changes."
+                       FontSize="Medium"
+                       TextColor="#666666"
+                       LineBreakMode="WordWrap" />
+            </Frame>
+
+            <!-- Key Figures Section -->
+            <Label Text="Notable Presidents" FontSize="Title" FontAttributes="Bold" TextColor="#333333" />
+
+            <!-- Ibrahim Traoré -->
+            <Frame BackgroundColor="White" CornerRadius="15" Padding="10" HasShadow="True">
+                <VerticalStackLayout Spacing="5">
+                    <Image Source="traore.jpg" Aspect="AspectFill" HeightRequest="200" />
+                    <Label Text="Ibrahim Traoré (2022 - Present)"
+                       FontSize="Subtitle"
+                       FontAttributes="Bold"
+                       TextColor="#333333" />
+                            <Label Text="Ibrahim Traoré assumed leadership in 2022, focusing on security, national sovereignty, and strengthening Burkina Faso's resilience amidst ongoing regional challenges. His vision prioritizes unity and progress for the Burkinabé people."
+                       FontSize="Small"
+                       TextColor="#666666"
+                       LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- Thomas Sankara -->
+            <Frame BackgroundColor="White" CornerRadius="15" Padding="10" HasShadow="True">
+                <VerticalStackLayout Spacing="5">
+                    <Image Source="thomas_sankara.jpeg" Aspect="AspectFill" HeightRequest="200" />
+                    <Label Text="Thomas Sankara (1983-1987)"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           TextColor="#333333" />
+                    <Label Text="Often referred to as 'Africa's Che Guevara,' Thomas Sankara led with a vision of self-sufficiency, anti-imperialism, and women's rights before his tragic assassination in 1987."
+                           FontSize="Small"
+                           TextColor="#666666"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Blaise Compaoré -->
+            <Frame BackgroundColor="White" CornerRadius="15" Padding="10" HasShadow="True">
+                <VerticalStackLayout Spacing="5">
+                    <Image Source="blaise.jpeg" Aspect="AspectFill" HeightRequest="200" />
+                    <Label Text="Blaise Compaoré (1987-2014)"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           TextColor="#333333" />
+                    <Label Text="Compaoré ruled for 27 years following Sankara's assassination. His tenure saw both economic growth and controversy, ending in 2014 with widespread protests that led to his resignation."
+                           FontSize="Small"
+                           TextColor="#666666"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Roch Marc Christian Kaboré -->
+            <Frame BackgroundColor="White" CornerRadius="15" Padding="10" HasShadow="True">
+                <VerticalStackLayout Spacing="5">
+                    <Image Source="roch_kabore.jpg" Aspect="AspectFill" HeightRequest="200" />
+                    <Label Text="Roch Marc Christian Kaboré (2015-2022)"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           TextColor="#333333" />
+                    <Label Text="Kaboré served as president until 2022, focusing on countering terrorism and promoting economic growth. His time in office faced challenges from rising insecurity in the region."
+                           FontSize="Small"
+                           TextColor="#666666"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Scenic Image Section -->
+            <Label Text="Cultural and Scenic Views" FontSize="Title" FontAttributes="Bold" TextColor="#333333" />
+
+            <!-- Image Gallery -->
+            <Frame BackgroundColor="White" CornerRadius="15" Padding="10" HasShadow="True">
+                    <VerticalStackLayout Spacing="5">
+                        <Image Source="sindou.jpg" Aspect="AspectFill" HeightRequest="200" />
+                        <Label Text="Stunning landscapes of Burkina Faso"
+                           FontSize="Small"
+                           TextColor="#666666"
+                           HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="15" Padding="10" HasShadow="True">
+                <VerticalStackLayout Spacing="5">
+                    <Image Source="banfora.jpg" Aspect="AspectFill" HeightRequest="200" />
+                    <Label Text="Cultural celebrations and traditional attire"
+                           FontSize="Small"
+                           TextColor="#666666"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+             </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

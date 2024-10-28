@@ -8,8 +8,8 @@ namespace FasoQRCode
         {
             InitializeComponent();
 
-            //Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
-            //Routing.RegisterRoute(nameof(PageMainTabbed), typeof(PageMainTabbed));
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
+            Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));
         }
     }
 }
