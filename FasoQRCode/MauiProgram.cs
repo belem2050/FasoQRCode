@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FasoQRCode.Views;
+using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
 namespace FasoQRCode
@@ -20,7 +21,9 @@ namespace FasoQRCode
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<MainPage>();
 
+            builder.Services.AddTransient<ResultPage>();
             return builder.Build();
         }
     }

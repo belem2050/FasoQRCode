@@ -43,7 +43,7 @@
 		<MauiIcon Include="Resources\AppIcon\burkina_icon.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\burkina_splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -57,6 +57,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\banfora.jpg" />
+	  <None Remove="Resources\Images\blaise.jpeg" />
+	  <None Remove="Resources\Images\blaise_compaore.avif" />
 	  <None Remove="Resources\Images\burkina_faso.png" />
 	  <None Remove="Resources\Images\burkina_faso_know_more.png" />
 	  <None Remove="Resources\Images\flash.png" />
@@ -65,9 +68,13 @@
 	  <None Remove="Resources\Images\image_gallery.png" />
 	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\qr_code.png" />
+	  <None Remove="Resources\Images\roch_kabore.jpg" />
 	  <None Remove="Resources\Images\rotate.png" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\share.png" />
+	  <None Remove="Resources\Images\sindou.jpg" />
+	  <None Remove="Resources\Images\Thomas_Sankara.jpeg" />
+	  <None Remove="Resources\Images\traore.jpg" />
 	  <None Remove="Resources\Images\write.png" />
 	  <None Remove="Resources\Images\zoom_in.png" />
 	  <None Remove="Resources\Images\zoom_out.png" />
@@ -95,6 +102,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PageSettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ResultPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

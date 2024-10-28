@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using FasoQRCode.Views;
 
 namespace FasoQRCode
 {
@@ -34,7 +35,7 @@ namespace FasoQRCode
             };
         }
 
-        private void barcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
+        private async void barcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
         {
             var first = e.Results?.FirstOrDefault();
 
@@ -45,18 +46,26 @@ namespace FasoQRCode
 
             Dispatcher.DispatchAsync(async () =>
             {
-                await DisplayAlert("Barcode Detected", first.Value, "Burkina Faso is getting there");
+                try
+                {
+                    var encodedResult = Uri.EscapeDataString(first.Value);
+                    await Shell.Current.GoToAsync($"{nameof(ResultPage)}?resultText={encodedResult}").ConfigureAwait(true);
+                }
+                catch (Exception ex)
+                {
+                    //Debug.WriteLine($"Navigation error: {ex.Message}");
+                }
             });
         }
 
         [RelayCommand]
-        public void ScanbyImage()
+        public async void ScanbyImage()
         {
 
         }
 
         [RelayCommand]
-        public void ToggleTorch()
+        public async void ToggleTorch()
         {
             barcodeReader.IsTorchOn = !barcodeReader.IsTorchOn;
         }

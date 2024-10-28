@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="FasoQRCode.MainPage">
@@ -7,37 +6,46 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Row for buttons -->
             <RowDefinition Height="*"/>
-            <!-- Row for camera display -->
             <RowDefinition Height="Auto"/>
-            <!-- Row for slider and labels -->
         </Grid.RowDefinitions>
-        <!-- Placeholder for Camera View -->
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               Text="Camera not connected yet!"
-               FontSize="Title"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               TextColor="Gray" />
-
+        
+        <!-- Camera View -->
         <zxing:CameraBarcodeReaderView Grid.Row="0"
-                                  Grid.Column="0"
-                                  Grid.ColumnSpan="1"
-                                  Grid.RowSpan="3"
-                                  x:Name="barcodeReader"
-                                  BarcodesDetected="barcodeReader_BarcodesDetected"/>
-        <!-- Button Grid -->
+                                       Grid.Column="0"
+                                       Grid.RowSpan="3"
+                                       x:Name="barcodeReader"
+                                       BarcodesDetected="barcodeReader_BarcodesDetected"/>
+
+        <AbsoluteLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+            <!-- Top Border -->
+            <BoxView Color="Red" HeightRequest="2" WidthRequest="300"
+             AbsoluteLayout.LayoutBounds="0.5,0,300,2"
+             AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+            <!-- Bottom Border -->
+            <BoxView Color="Red" HeightRequest="2" WidthRequest="300"
+             AbsoluteLayout.LayoutBounds="0.5,1,300,2"
+             AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+            <!-- Left Border -->
+            <BoxView Color="Red" WidthRequest="2" HeightRequest="300"
+             AbsoluteLayout.LayoutBounds="0,0.5,2,300"
+             AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+            <!-- Right Border -->
+            <BoxView Color="Red" WidthRequest="2" HeightRequest="300"
+             AbsoluteLayout.LayoutBounds="1,0.5,2,300"
+             AbsoluteLayout.LayoutFlags="PositionProportional" />
+        </AbsoluteLayout>
+
+
+        <!-- Button Grid for Scan, Flash, and Swap Camera -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <!-- Stretch to fill available space -->
                 <ColumnDefinition Width="*"/>
-                <!-- Stretch to fill available space -->
                 <ColumnDefinition Width="*"/>
-                <!-- Stretch to fill available space -->
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
@@ -68,9 +76,6 @@
                     Command="{Binding Path=SwapCameraCommand, Mode=OneWay}"/>
         </Grid>
 
-
-     
-
         <!-- Slider and Labels Row -->
         <StackLayout Grid.Row="2"
                      Spacing="0"
@@ -82,7 +87,6 @@
                     FontSize="Title"
                     HorizontalOptions="Start"
                     HeightRequest="55"
-                    Margin="0,0,0,0"
                     ImageSource="zoom_out"
                     BackgroundColor="Transparent"/>
 
@@ -97,12 +101,9 @@
             <Button VerticalOptions="Center"
                     FontSize="Title"
                     HorizontalOptions="End"
-                    Margin="0,0,0,0"
                     HeightRequest="55"
                     BackgroundColor="Transparent"
                     ImageSource="zoom_in.png"/>
-
         </StackLayout>
     </Grid>
-
 </ContentPage>

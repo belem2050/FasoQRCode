@@ -9,7 +9,8 @@
     Title="Faso QRCode">
 
     <FlyoutItem Title="Scan" Icon="qr_code.png">
-        <ShellContent Title="Faso Code Reader" ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent Title="Faso Code Reader" ContentTemplate="{DataTemplate local:MainPage}" 
+                      Route="MainPage"/>
     </FlyoutItem>
 
 
