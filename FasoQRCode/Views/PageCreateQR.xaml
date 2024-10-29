@@ -1,12 +1,88 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FasoQRCode.Views.PageCreateQR" 
-             Title="Create">
-    <VerticalStackLayout>
-        <Label 
-            Text="Create QR code"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Create QR Code">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Page Title -->
+            <Label Text="Create QR Code" 
+                   FontSize="Title" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="DarkBlue" />
+
+            <!-- Input Field for QR Code Content -->
+            <Label Text="Enter Text or URL" 
+                   FontSize="Medium" 
+                   TextColor="Black"/>
+            <Entry Placeholder="Type your content here..." 
+                   FontSize="Medium" 
+                   x:Name="inputEntry"
+                   Text="{Binding QrContent}"
+                   HorizontalOptions="FillAndExpand"/>
+
+            <!-- QR Code Size Selector -->
+            <Label Text="QR Code Size" 
+                   FontSize="Medium" 
+                   TextColor="Black" />
+            <Picker x:Name="sizePicker" 
+                    Title="Select size" 
+                    SelectedItem="{Binding QrSize}" 
+                    HorizontalOptions="FillAndExpand">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Small</x:String>
+                        <x:String>Medium</x:String>
+                        <x:String>Large</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- QR Code Preview -->
+            <Label Text="Preview" 
+                   FontSize="Medium" 
+                   FontAttributes="Bold" 
+                   TextColor="Black" 
+                   Margin="0,10,0,5"/>
+            <Frame BackgroundColor="LightGray" 
+                   HeightRequest="150" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center">
+                <Image x:Name="qrCodePreview" 
+                       Source="{Binding QrCodeImage}" 
+                       Aspect="AspectFit" 
+                       HeightRequest="150" 
+                       WidthRequest="150" />
+            </Frame>
+
+            <!-- Generate QR Button -->
+            <Button Text="Generate QR Code" 
+                    Command="{Binding GenerateQrCodeCommand}" 
+                    BackgroundColor="DarkBlue" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    FontSize="Medium" 
+                    CornerRadius="10"
+                    Padding="10"
+                    HorizontalOptions="FillAndExpand" />
+
+            <!-- Save and Share Options -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Margin="0,10,0,0">
+                <Button Text="Save"
+                        Command="{Binding SaveQrCodeCommand}" 
+                        BackgroundColor="DarkGreen" 
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Padding="10"
+                        CornerRadius="10" />
+                <Button Text="Share" 
+                        Command="{Binding ShareQrCodeCommand}" 
+                        BackgroundColor="DarkRed" 
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Padding="10"
+                        CornerRadius="10" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

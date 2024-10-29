@@ -15,6 +15,8 @@
                                        Grid.Column="0"
                                        Grid.RowSpan="3"
                                        x:Name="barcodeReader"
+                                       IsTorchOn="{Binding Path=Manger.Settings.IsTorchOn}"
+                                       CameraLocation="{Binding Path=Manger.Settings.DefaultCamera}"
                                        BarcodesDetected="barcodeReader_BarcodesDetected"/>
 
         <AbsoluteLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">

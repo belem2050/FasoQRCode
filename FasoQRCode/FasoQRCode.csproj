@@ -101,6 +101,9 @@
 	  <MauiXaml Update="Views\PageCreateQR.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\PageHistory.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\PageSettings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,12 +1,126 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FasoQRCode.Views.PageSettings"
              Title="Settings">
-    <VerticalStackLayout>
-        <Label 
-            Text="Settings"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- General Settings -->
+            <Label Text="General Settings" 
+                   FontSize="Large" 
+                   FontAttributes="Bold" 
+                   TextColor="DarkBlue"
+                   Margin="0,0,0,10"/>
+
+            <Grid ColumnSpacing="10" RowSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Dark Mode -->
+                <Label Text="Dark Mode" Grid.Row="0" VerticalOptions="Center" />
+                <Switch x:Name="darkModeSwitch" Grid.Row="0" Grid.Column="1" 
+                        HorizontalOptions="End" 
+                        IsToggled="{Binding Path=Manager.Settings.IsDarkModeEnabled}" />
+
+                <!-- Vibration -->
+                <Label Text="Enable Vibration on Scan" Grid.Row="1" VerticalOptions="Center"/>
+                <Switch x:Name="vibrationSwitch" Grid.Row="1" Grid.Column="1" 
+                        HorizontalOptions="End" 
+                        IsToggled="{Binding Path=Manager.Settings.IsVibrationEnabled}" />
+
+                <!-- Sound -->
+                <Label Text="Sound on Scan" Grid.Row="2" VerticalOptions="Center"/>
+                <Switch x:Name="soundSwitch" Grid.Row="2" Grid.Column="1" 
+                        HorizontalOptions="End" 
+                        IsToggled="{Binding Path=Manager.Settings.IsSoundEnabled}" />
+            </Grid>
+
+            <BoxView HeightRequest="1" Color="LightGray" Opacity="0.7" Margin="0,10,0,10"/>
+
+            <!-- Camera Settings -->
+            <Label Text="Camera Settings" 
+                   FontSize="Large" 
+                   FontAttributes="Bold" 
+                   TextColor="DarkBlue"
+                   Margin="0,0,0,10"/>
+
+            <Grid ColumnSpacing="10" RowSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Default Camera -->
+                <Label Text="Default Camera" Grid.Row="0" VerticalOptions="Center"/>
+                <Picker x:Name="cameraPicker" 
+                        Grid.Row="0" Grid.Column="1" 
+                        Title="Select Camera" 
+                        HorizontalOptions="End" 
+                        SelectedItem="{Binding Path=Manager.Settings.Camera}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Rear</x:String>
+                            <x:String>Front</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <!-- Auto-Focus -->
+                <Label Text="Auto-Focus" Grid.Row="1" VerticalOptions="Center"/>
+                <Switch x:Name="autoFocusSwitch" Grid.Row="1" Grid.Column="1" 
+                        HorizontalOptions="End" 
+                        IsToggled="{Binding Path=Manager.Settings.IsAutoFocusEnabled}" />
+
+                <!-- Torch -->
+                <Label Text="Torch" Grid.Row="2" VerticalOptions="Center"/>
+                <Switch x:Name="torchSwitch" Grid.Row="2" Grid.Column="1" 
+                        HorizontalOptions="End" 
+                        IsToggled="{Binding Path=Manager.Settings.IsTorchOn}" />
+            </Grid>
+
+            <BoxView HeightRequest="1" Color="LightGray" Opacity="0.7" Margin="0,10,0,10"/>
+
+            <!-- App Settings -->
+            <Label Text="App Settings" 
+                   FontSize="Large" 
+                   FontAttributes="Bold" 
+                   TextColor="DarkBlue"
+                   Margin="0,0,0,10"/>
+
+            <Button Text="Manage Permissions" 
+                    Command="{Binding ManagePermissionsCommand}" 
+                    BackgroundColor="LightGray"
+                    TextColor="DarkSlateGray"
+                    FontSize="Medium"
+                    Padding="10"/>
+
+            <Button Text="Clear Cache" 
+                    Command="{Binding ClearCacheCommand}" 
+                    BackgroundColor="LightGray"
+                    TextColor="DarkSlateGray"
+                    FontSize="Medium"
+                    Padding="10"/>
+
+            <Button Text="Reset to Default Settings" 
+                    Command="{Binding ResetSettingsCommand}" 
+                    BackgroundColor="DarkRed"
+                    TextColor="White"
+                    FontSize="Medium"
+                    Padding="10"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

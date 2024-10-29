@@ -5,22 +5,8 @@ namespace FasoQRCode
 {
     public partial class MainPage : ContentPage
     {
+        public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
 
-        public double ZoomRate
-        {
-            get
-            {
-                return _zoomRate;
-            }
-            set
-            {
-                _zoomRate = value;
-                OnPropertyChanged();
-
-            }
-        }
-
-        private double _zoomRate = 1;
         public MainPage()
         {
             InitializeComponent();
@@ -67,19 +53,20 @@ namespace FasoQRCode
         [RelayCommand]
         public async void ToggleTorch()
         {
-            barcodeReader.IsTorchOn = !barcodeReader.IsTorchOn;
+
+            Manager.Settings.IsTorchon = !Manager.Settings.IsTorchon;
         }
 
         [RelayCommand]
         public void SwapCamera()
         {
-            if(barcodeReader.CameraLocation  == ZXing.Net.Maui.CameraLocation.Rear)
+            if(Manager.Settings.DefaultCamera  == ZXing.Net.Maui.CameraLocation.Rear)
             {
-                barcodeReader.CameraLocation = ZXing.Net.Maui.CameraLocation.Front;
+                Manager.Settings.DefaultCamera = ZXing.Net.Maui.CameraLocation.Front;
             }
             else
             {
-                barcodeReader.CameraLocation = ZXing.Net.Maui.CameraLocation.Rear;
+                Manager.Settings.DefaultCamera = ZXing.Net.Maui.CameraLocation.Rear;
             }
         }
     }

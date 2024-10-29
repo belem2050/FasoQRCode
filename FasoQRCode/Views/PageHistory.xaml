@@ -1,0 +1,84 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FasoQRCode.Views.PageHistory"
+             Title="History">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Page Title -->
+            <Label Text="Scan History" 
+                   FontSize="Title" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="DarkBlue" />
+
+            <!-- History List -->
+            <CollectionView ItemsSource="{Binding HistoryItems}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,5,0,5" Padding="10" CornerRadius="10" BorderColor="Gray" BackgroundColor="LightGray">
+                            <VerticalStackLayout>
+                                <!-- QR Code Label and Thumbnail -->
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="{Binding QrThumbnail}" 
+                                           WidthRequest="50" 
+                                           HeightRequest="50" 
+                                           Aspect="AspectFit"/>
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Title}" 
+                                               FontSize="Medium" 
+                                               FontAttributes="Bold" 
+                                               TextColor="Black"/>
+                                        <Label Text="{Binding Date}" 
+                                               FontSize="Small" 
+                                               TextColor="Gray"/>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+
+                                <!-- QR Code Content -->
+                                <Label Text="{Binding Content}" 
+                                       FontSize="Small" 
+                                       TextColor="DarkSlateGray" 
+                                       LineBreakMode="TailTruncation" 
+                                       MaxLines="2" 
+                                       Margin="0,5,0,0"/>
+
+                                <!-- Action Buttons -->
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
+                                    <Button Text="View" 
+                                            Command="{Binding Path=BindingContext.ViewDetailsCommand, Source={x:Reference PageHistory}}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="CornflowerBlue" 
+                                            TextColor="White" 
+                                            Padding="5,2" 
+                                            FontAttributes="Bold" 
+                                            CornerRadius="10"/>
+                                    <Button Text="Delete" 
+                                            Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference PageHistory}}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="IndianRed" 
+                                            TextColor="White" 
+                                            Padding="5,2" 
+                                            FontAttributes="Bold" 
+                                            CornerRadius="10"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Clear History Button -->
+            <Button Text="Clear All History" 
+                    Command="{Binding ClearHistoryCommand}" 
+                    BackgroundColor="DarkRed" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    FontSize="Medium" 
+                    CornerRadius="10"
+                    Padding="10" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="End" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

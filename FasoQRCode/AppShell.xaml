@@ -23,15 +23,19 @@
         <ShellContent ContentTemplate="{DataTemplate pages:PageSettings}"/>
     </FlyoutItem>
 
+    <FlyoutItem Title="History">
+        <ShellContent ContentTemplate="{DataTemplate pages:PageHistory}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="More About Burkina Faso" Icon="burkina_faso_know_more.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:PageAboutBurkinaFaso}" />
+    </FlyoutItem>
     <!-- Standalone MenuItem with icon -->
 
 
     <MenuItem Text="Share" IconImageSource="share.png"
-              Command="{Binding LogoutCommand}" />
+              Command="{Binding ShareCommand}" />
     
-    <FlyoutItem Title="More About Burkina Faso" Icon="burkina_faso_know_more.png">
-        <ShellContent ContentTemplate="{DataTemplate pages:PageAboutBurkinaFaso}" />
-    </FlyoutItem>
 
     <MenuItem Text="Logout" IconImageSource="logout.png"
             Command="{Binding LogoutCommand}" />
