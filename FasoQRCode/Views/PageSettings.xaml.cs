@@ -31,4 +31,6 @@ public partial class PageSettings : ContentPage
     {
         Manager.Settings.ResetSettings();
     }
+
+
 }

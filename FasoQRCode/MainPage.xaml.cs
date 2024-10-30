@@ -7,6 +7,7 @@ namespace FasoQRCode
     {
         public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
 
+
         public MainPage()
         {
             InitializeComponent();
@@ -29,45 +30,76 @@ namespace FasoQRCode
             {
                 return;
             }
-
-            Dispatcher.DispatchAsync(async () =>
+            barcodeReader.IsDetecting = false;
+            await Dispatcher.DispatchAsync(async () =>
             {
                 try
                 {
-                    var encodedResult = Uri.EscapeDataString(first.Value);
-                    await Shell.Current.GoToAsync($"{nameof(ResultPage)}?resultText={encodedResult}").ConfigureAwait(true);
+                    if (Manager.Settings.IsSoundEnabled)
+                    {
+                        soundPlayer.Play();
+                    }
+
+                    string encodedResult = Uri.EscapeDataString(first.Value);
+                    await Shell.Current.GoToAsync($"//{nameof(MainPage)}/ResultPage?resultText={encodedResult}");
+                    //.ConfigureAwait(true);
                 }
                 catch (Exception ex)
                 {
                     //Debug.WriteLine($"Navigation error: {ex.Message}");
                 }
+                finally
+                {
+                    barcodeReader.IsDetecting=true;
+                }
             });
         }
 
         [RelayCommand]
-        public async void ScanbyImage()
+        public void ScanbyImage()
         {
-
+            soundPlayer.Play();
         }
 
         [RelayCommand]
-        public async void ToggleTorch()
+        public void ToggleTorch()
         {
-
-            Manager.Settings.IsTorchon = !Manager.Settings.IsTorchon;
+            Manager.Settings.IsTorchOn = !Manager.Settings.IsTorchOn;
         }
 
         [RelayCommand]
         public void SwapCamera()
         {
-            if(Manager.Settings.DefaultCamera  == ZXing.Net.Maui.CameraLocation.Rear)
+            try
             {
-                Manager.Settings.DefaultCamera = ZXing.Net.Maui.CameraLocation.Front;
+
+                if (Manager.Settings.DefaultCamera == ZXing.Net.Maui.CameraLocation.Rear)
+                {
+                    Manager.Settings.DefaultCamera = ZXing.Net.Maui.CameraLocation.Front;
+                }
+                else
+                {
+                    Manager.Settings.DefaultCamera = ZXing.Net.Maui.CameraLocation.Rear;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Manager.Settings.DefaultCamera = ZXing.Net.Maui.CameraLocation.Rear;
+                //failure
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            // Ensure the camera starts detecting when the page appears
+            barcodeReader.IsDetecting = true;
+        }
+
+        protected override void OnDisappearing()
+        {
+            // Optionally stop detecting when leaving the page
+            barcodeReader.IsDetecting = false;
+            base.OnDisappearing();
         }
     }
 

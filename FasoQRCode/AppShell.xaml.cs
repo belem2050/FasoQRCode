@@ -10,7 +10,6 @@ namespace FasoQRCode
 
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));
-            //Routing.RegisterRoute(nameof(PageCreateQR), typeof(PageCreateQR));
         }
     }
 }

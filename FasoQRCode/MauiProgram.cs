@@ -3,6 +3,8 @@ using FasoQRCode.ViewsModels;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
+using CommunityToolkit.Maui;
+
 namespace FasoQRCode
 {
     public static class MauiProgram
@@ -17,7 +19,8 @@ namespace FasoQRCode
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
-                .UseBarcodeReader();
+                .UseBarcodeReader()
+                .UseMauiCommunityToolkitMediaElement();
 
 #if DEBUG
     		builder.Logging.AddDebug();

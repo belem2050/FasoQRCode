@@ -1,6 +1,7 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="FasoQRCode.MainPage">
 
     <Grid>
@@ -9,14 +10,20 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
+
+        <toolkit:MediaElement x:Name="soundPlayer" 
+                           IsVisible="False" 
+                            IsEnabled="True"
+                        
+                           Source="embed://Resources/Raw/success_scan.mp3"/>
+
         <!-- Camera View -->
         <zxing:CameraBarcodeReaderView Grid.Row="0"
                                        Grid.Column="0"
                                        Grid.RowSpan="3"
                                        x:Name="barcodeReader"
-                                       IsTorchOn="{Binding Path=Manger.Settings.IsTorchOn}"
-                                       CameraLocation="{Binding Path=Manger.Settings.DefaultCamera}"
+                                       IsTorchOn="{Binding Path=Manager.Settings.IsTorchOn}"
+                                       CameraLocation="{Binding Path=Manager.Settings.DefaultCamera}"
                                        BarcodesDetected="barcodeReader_BarcodesDetected"/>
 
         <AbsoluteLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
@@ -64,7 +71,7 @@
             
             <Button Grid.Column="1"
                     HorizontalOptions="Center"
-                    ImageSource="flash.png"
+                    ImageSource="{Binding Path=Manager.Settings.FlashIcon}"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
                     Command="{Binding Path=ToggleTorchCommand, Mode=OneWay}"/>
@@ -89,7 +96,7 @@
                     FontSize="Title"
                     HorizontalOptions="Start"
                     HeightRequest="55"
-                    ImageSource="zoom_out"
+                    ImageSource="zoom_out.png"
                     BackgroundColor="Transparent"/>
 
             <Slider x:Name="zoomer"

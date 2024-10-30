@@ -23,7 +23,7 @@
         <ShellContent ContentTemplate="{DataTemplate pages:PageSettings}"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="History">
+    <FlyoutItem Title="History" Icon="history.png">
         <ShellContent ContentTemplate="{DataTemplate pages:PageHistory}" />
     </FlyoutItem>
 

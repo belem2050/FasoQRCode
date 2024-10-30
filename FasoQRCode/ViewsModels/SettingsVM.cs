@@ -7,13 +7,10 @@ namespace FasoQRCode.ViewsModels
     public partial class SettingsVM : ObservableObject
     {
         [ObservableProperty] 
-        private bool isDarkModeEnabled;
-        
-        [ObservableProperty] 
         private bool isVibrationEnabled;
         
         [ObservableProperty] 
-        private bool isSoundEnabled;
+        private bool isSoundEnabled = true;
 
         [ObservableProperty]
         private CameraLocation defaultCamera;
@@ -37,17 +34,55 @@ namespace FasoQRCode.ViewsModels
                 }
             }
         }
-        private string camera;
+        private string camera = "Rear";
 
   
 
         [ObservableProperty]
         private bool isAutoFocusEnabled;
         
-        [ObservableProperty]
+        public bool IsTorchOn
+        {
+            get
+            {
+                return isTorchon;
+            }
+            set
+            {
+                isTorchon = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(FlashIcon));
+
+            }
+        }
         private bool isTorchon;
 
-        
+        //[ObservableProperty]
+        public ImageSource FlashIcon
+        {
+            get
+            {
+                return IsTorchOn ? ImageSource.FromFile("flash.png")
+                                 : ImageSource.FromFile("flash_off.png");
+            }
+        }
+
+
+        public bool IsDarkModeEnabled
+        {
+            get
+            {
+                return _isDarkModeEnabled;
+            }
+            set
+            {
+                _isDarkModeEnabled = value;
+                Application.Current.UserAppTheme = value ? AppTheme.Dark : AppTheme.Light;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isDarkModeEnabled;
+
 
         public async Task ClearCache()
         {
@@ -61,7 +96,7 @@ namespace FasoQRCode.ViewsModels
             IsSoundEnabled = true;
             DefaultCamera = CameraLocation.Rear;
             IsAutoFocusEnabled = true;
-            IsTorchon = false;
+            IsTorchOn = false;
         }
     }
 }
