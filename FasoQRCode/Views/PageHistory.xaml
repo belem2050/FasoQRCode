@@ -13,57 +13,84 @@
                    TextColor="DarkBlue" />
 
             <!-- History List -->
-            <CollectionView ItemsSource="{Binding HistoryItems}" SelectionMode="None">
+            <CollectionView ItemsSource="{Binding Path=Manager.HistoryItems}" 
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Margin="0,5,0,5" Padding="10" CornerRadius="10" BorderColor="Gray" BackgroundColor="LightGray">
-                            <VerticalStackLayout>
-                                <!-- QR Code Label and Thumbnail -->
-                                <HorizontalStackLayout Spacing="10">
-                                    <Image Source="{Binding QrThumbnail}" 
-                                           WidthRequest="50" 
-                                           HeightRequest="50" 
-                                           Aspect="AspectFit"/>
-                                    <VerticalStackLayout>
-                                        <Label Text="{Binding Title}" 
-                                               FontSize="Medium" 
-                                               FontAttributes="Bold" 
-                                               TextColor="Black"/>
-                                        <Label Text="{Binding Date}" 
-                                               FontSize="Small" 
-                                               TextColor="Gray"/>
-                                    </VerticalStackLayout>
-                                </HorizontalStackLayout>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <!-- For QR Code Thumbnail and Labels -->
+                                    <RowDefinition Height="*"/>
+                                    <!-- For QR Code Content -->
+                                    <RowDefinition Height="*"/>
+                                    <!-- For Action Buttons -->
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <!-- For Image -->
+                                    <ColumnDefinition Width="*"/>
+                                    <!-- For Title and Date -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- QR Code Thumbnail -->
+                                <Image Grid.Row="0" 
+                                        Grid.Column="1"
+                                        Grid.RowSpan="2"
+                                        Source="{Binding QrThumbnail}" 
+                                        Aspect="AspectFit" 
+                                        Margin="0"/>
+
+                                <!-- Title and Date -->
+                               
+                                <Label  Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding Title}" 
+                                        FontSize="Medium" 
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Start"
+                                        FontAttributes="Bold" 
+                                        Margin="8"
+                                        TextColor="Black"/>
+                                
+                                <Label Grid.Row="1"
+                                        Grid.Column="0"
+                                        Text="{Binding Date}" 
+                                        FontSize="Small" 
+                                        VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Margin="0,0,8,0"
+                                        LineBreakMode="TailTruncation"
+                                        TextColor="Gray"/>
+                              
 
                                 <!-- QR Code Content -->
-                                <Label Text="{Binding Content}" 
-                                       FontSize="Small" 
-                                       TextColor="DarkSlateGray" 
-                                       LineBreakMode="TailTruncation" 
-                                       MaxLines="2" 
-                                       Margin="0,5,0,0"/>
+                                <Label Grid.Row="2" 
+                                        Text="{Binding Content}" 
+                                        FontSize="Small" 
+                                        TextColor="DarkSlateGray" 
+                                        LineBreakMode="TailTruncation" 
+                                        MaxLines="2" 
+                                        Margin="8"/>
 
                                 <!-- Action Buttons -->
-                                <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
-                                    <Button Text="View" 
-                                            Command="{Binding Path=BindingContext.ViewDetailsCommand, Source={x:Reference PageHistory}}"
-                                            CommandParameter="{Binding .}"
-                                            BackgroundColor="CornflowerBlue" 
-                                            TextColor="White" 
-                                            Padding="5,2" 
-                                            FontAttributes="Bold" 
-                                            CornerRadius="10"/>
-                                    <Button Text="Delete" 
-                                            Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference PageHistory}}"
-                                            CommandParameter="{Binding .}"
-                                            BackgroundColor="IndianRed" 
-                                            TextColor="White" 
-                                            Padding="5,2" 
-                                            FontAttributes="Bold" 
-                                            CornerRadius="10"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
+
+                                <Button Text="Delete"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="IndianRed" 
+                                        TextColor="White" 
+                                        Margin="16,8,16,0"
+                                        FontAttributes="Bold" 
+                                        CornerRadius="10"/>
+                            </Grid>
                         </Frame>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
