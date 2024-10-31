@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using FasoQRCode.Models;
 using FasoQRCode.Views;
 
 namespace FasoQRCode
@@ -37,10 +38,20 @@ namespace FasoQRCode
                 {
                     if (Manager.Settings.IsSoundEnabled)
                     {
+                        soundPlayer.Stop();
                         soundPlayer.Play();
                     }
 
                     string encodedResult = Uri.EscapeDataString(first.Value);
+
+                    Manager.HistoryItems.Add(new HistoryItem
+                    {
+                        Title = "New Scan",  
+                        Date = DateTime.Now,
+                        Content = first.Value,
+                        QrThumbnail = "qr_placeholder.png"  
+                    });
+
                     await Shell.Current.GoToAsync($"//{nameof(MainPage)}/ResultPage?resultText={encodedResult}");
                     //.ConfigureAwait(true);
                 }
@@ -58,6 +69,7 @@ namespace FasoQRCode
         [RelayCommand]
         public void ScanbyImage()
         {
+            soundPlayer.Stop();
             soundPlayer.Play();
         }
 
