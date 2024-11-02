@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using FasoQRCode.Models;
+using FasoQRCode.Models.Data;
 using System.Text.Json;
 
 namespace FasoQRCode.ViewModels
@@ -9,17 +9,14 @@ namespace FasoQRCode.ViewModels
     {
 
         public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
+        private readonly HistoryService _historyService = new HistoryService();
 
         [ObservableProperty]
         private HistoryItem selectedItem;
 
         public PageHistoryVM()
         {
-            Manager.HistoryItems.Add(new HistoryItem("Scan 1", DateTime.Now, "https://example.com", "banfora.jpg"));
-            Manager.HistoryItems.Add(new HistoryItem("Scan 2", DateTime.Now, "Hello World!", "sindou.jpg"));
-            //SaveHistoryItemsAsync(Manager.HistoryItems.ToList());
-            //LoadHistoryItemsAsync();
-
+            Manager.HistoryItems = _historyService.LoadHistory();
         }
 
         [RelayCommand]
@@ -54,7 +51,6 @@ namespace FasoQRCode.ViewModels
             string json = JsonSerializer.Serialize(historyItems, new JsonSerializerOptions { WriteIndented = true });
 
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
-            //string filePath = "C:/Users/groth/Desktop/NovaLynx/history.json";
             if (!File.Exists(filePath))
             {
                 File.Create(filePath);
@@ -70,9 +66,6 @@ namespace FasoQRCode.ViewModels
         private List<HistoryItem> loadHistoryItemsAsync()
         {
             string fileName = "history.json"; // File name for loading
-            //string filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
-            //Path.
-            //string filePath = "C:\\Users\\groth\\Desktop\\NovaLynx\\history.json";
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
 
 

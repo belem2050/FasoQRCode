@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using FasoQRCode.Models;
+using FasoQRCode.Models.Data;
 using FasoQRCode.ViewsModels;
 using System.Collections.ObjectModel;
 using ZXing;
@@ -12,10 +12,16 @@ namespace FasoQRCode
         static private SystemManager? _instance = null;
 
         public SettingsVM Settings { get; set; } = new SettingsVM();
+        public HistoryItem CurrentHistoryItem { get; set; } = new HistoryItem();
         public ObservableCollection<HistoryItem> HistoryItems { get; set; } = new ObservableCollection<HistoryItem>();
+
+        private readonly HistoryService _historyService = new HistoryService();
+
 
         private SystemManager()
         {
+            HistoryItems = _historyService.LoadHistory();
+            _historyService.SaveHistory(HistoryItems);
         }
 
         static public SystemManager GetInstance()
