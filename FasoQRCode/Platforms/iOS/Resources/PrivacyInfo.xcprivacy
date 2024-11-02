@@ -10,6 +10,10 @@ More information: https://aka.ms/maui-privacy-manifest
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs access to save QR codes to your photo library.</string>
+	
     <key>NSPrivacyAccessedAPITypes</key>
     <array>
         <dict>
@@ -36,7 +40,9 @@ More information: https://aka.ms/maui-privacy-manifest
                 <string>E174.1</string>
             </array>
         </dict>
-        <!--
+
+
+		<!--
             The entry below is only needed when you're using the Preferences API in your app.
         <dict>
             <key>NSPrivacyAccessedAPIType</key>
