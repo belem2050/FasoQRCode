@@ -1,16 +1,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="FasoQRCode.Views.PageCreateQR" 
-             Title="Create QR Code">
+             Title="Make your own QR code">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
-            <!-- Page Title -->
-            <Label Text="Create QR Code" 
-                   FontSize="Title" 
-                   FontAttributes="Bold" 
-                   HorizontalOptions="Center" 
-                   TextColor="DarkBlue" />
-
+      
             <!-- Input Field for QR Code Content -->
             <Label Text="Enter Text or URL" 
                    FontSize="Medium" 
@@ -18,7 +13,7 @@
             <Entry Placeholder="Type your content here..." 
                    FontSize="Medium" 
                    x:Name="inputEntry"
-                   Text="{Binding QrContent}"
+                   Text="{Binding Path=QrContent, Mode=TwoWay}"
                    HorizontalOptions="FillAndExpand"/>
 
             <!-- QR Code Size Selector -->
@@ -44,44 +39,34 @@
                    FontAttributes="Bold" 
                    TextColor="Black" 
                    Margin="0,10,0,5"/>
-            <Frame BackgroundColor="LightGray" 
-                   HeightRequest="150" 
-                   HorizontalOptions="Center" 
-                   VerticalOptions="Center">
-                <Image x:Name="qrCodePreview" 
-                       Source="{Binding QrCodeImage}" 
-                       Aspect="AspectFit" 
-                       HeightRequest="150" 
-                       WidthRequest="150" />
+            <Frame  BackgroundColor="LightGray" 
+                    HeightRequest="{Binding Width, Mode=OneWay}"
+                    WidthRequest="{Binding Height, Mode=OneWay}"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center">
+                <zxing:BarcodeGeneratorView
+                    x:Name="barcodeGenerator"
+                    HeightRequest="{Binding Width, Mode=OneWay}"
+                    WidthRequest="{Binding Height, Mode=OneWay}"
+                    ForegroundColor="DarkBlue"
+                    Value="{Binding Path=QrContent, Mode=OneWay}"
+                    Format="QrCode"
+                    Margin="3" />
             </Frame>
 
-            <!-- Generate QR Button -->
-            <Button Text="Generate QR Code" 
-                    Command="{Binding GenerateQrCodeCommand}" 
-                    BackgroundColor="DarkBlue" 
-                    TextColor="White" 
-                    FontAttributes="Bold" 
-                    FontSize="Medium" 
-                    CornerRadius="10"
-                    Padding="10"
-                    HorizontalOptions="FillAndExpand" />
-
             <!-- Save and Share Options -->
-            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Margin="0,10,0,0">
-                <Button Text="Save"
-                        Command="{Binding SaveQrCodeCommand}" 
-                        BackgroundColor="DarkGreen" 
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        Padding="10"
-                        CornerRadius="10" />
-                <Button Text="Share" 
+            <HorizontalStackLayout Spacing="40" HorizontalOptions="Center" Margin="0,10,0,0">
+                <Button ImageSource="{Binding Path=SaveIcon, Mode=OneWay}"
+                        Command="{Binding SaveQrCodeInGalleryCommand}" 
+                        HeightRequest="70"
+                        Background="Transparent"/>
+                
+                <Button ImageSource="{Binding Path=ShareResultcon, Mode=OneWay}"
                         Command="{Binding ShareQrCodeCommand}" 
-                        BackgroundColor="DarkRed" 
+                        Background="Transparent"
                         TextColor="White"
-                        FontAttributes="Bold"
-                        Padding="10"
-                        CornerRadius="10" />
+                        HorizontalOptions="CenterAndExpand"
+                        HeightRequest="70"/>
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

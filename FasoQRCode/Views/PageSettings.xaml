@@ -32,19 +32,19 @@
                 <Label Text="Dark Mode" Grid.Row="0" VerticalOptions="Center" />
                 <Switch x:Name="darkModeSwitch" Grid.Row="0" Grid.Column="1" 
                         HorizontalOptions="End" 
-                        IsToggled="{Binding Path=Manager.Settings.IsDarkModeEnabled}" />
+                        IsToggled="{Binding Path=IsDarkModeEnabled}" />
 
                 <!-- Vibration -->
                 <Label Text="Enable Vibration on Scan" Grid.Row="1" VerticalOptions="Center"/>
                 <Switch x:Name="vibrationSwitch" Grid.Row="1" Grid.Column="1" 
                         HorizontalOptions="End" 
-                        IsToggled="{Binding Path=Manager.Settings.IsVibrationEnabled}" />
+                        IsToggled="{Binding Path=IsVibrationEnabled}" />
 
                 <!-- Sound -->
                 <Label Text="Sound on Scan" Grid.Row="2" VerticalOptions="Center"/>
                 <Switch x:Name="soundSwitch" Grid.Row="2" Grid.Column="1" 
                         HorizontalOptions="End" 
-                        IsToggled="{Binding Path=Manager.Settings.IsSoundEnabled}" />
+                        IsToggled="{Binding Path=IsSoundEnabled}" />
             </Grid>
 
             <BoxView HeightRequest="1" Color="LightGray" Opacity="0.7" Margin="0,10,0,10"/>
@@ -74,7 +74,7 @@
                         Grid.Row="0" Grid.Column="1" 
                         Title="Select Camera" 
                         HorizontalOptions="End" 
-                        SelectedItem="{Binding Path=Manager.Settings.Camera}">
+                        SelectedItem="{Binding Path=Camera}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Rear</x:String>
@@ -87,13 +87,13 @@
                 <Label Text="Auto-Focus" Grid.Row="1" VerticalOptions="Center"/>
                 <Switch x:Name="autoFocusSwitch" Grid.Row="1" Grid.Column="1" 
                         HorizontalOptions="End" 
-                        IsToggled="{Binding Path=Manager.Settings.IsAutoFocusEnabled}" />
+                        IsToggled="{Binding Path=IsAutoFocusEnabled}" />
 
                 <!-- Torch -->
                 <Label Text="Torch" Grid.Row="2" VerticalOptions="Center"/>
                 <Switch x:Name="torchSwitch" Grid.Row="2" Grid.Column="1" 
                         HorizontalOptions="End" 
-                        IsToggled="{Binding Path=Manager.Settings.IsTorchOn}" />
+                        IsToggled="{Binding Path=IsTorchOn, Mode=TwoWay}" />
             </Grid>
 
             <BoxView HeightRequest="1" Color="LightGray" Opacity="0.7" Margin="0,10,0,10"/>
@@ -104,20 +104,6 @@
                    FontAttributes="Bold" 
                    TextColor="DarkBlue"
                    Margin="0,0,0,10"/>
-
-            <Button Text="Manage Permissions" 
-                    Command="{Binding ManagePermissionsCommand}" 
-                    BackgroundColor="LightGray"
-                    TextColor="DarkSlateGray"
-                    FontSize="Medium"
-                    Padding="10"/>
-
-            <Button Text="Clear Cache" 
-                    Command="{Binding ClearCacheCommand}" 
-                    BackgroundColor="LightGray"
-                    TextColor="DarkSlateGray"
-                    FontSize="Medium"
-                    Padding="10"/>
 
             <Button Text="Reset to Default Settings" 
                     Command="{Binding ResetSettingsCommand}" 

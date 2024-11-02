@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FasoQRCode.Views.PageAboutBurkinaFaso"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Burkina Faso"
              BackgroundColor="#f4f4f9">
 
@@ -109,6 +110,31 @@
                 </VerticalStackLayout>
 
              </Frame>
+
+            <Label Text="Time to Join the Coalition: Together for a Better Future" FontSize="Header" FontAttributes="Bold" TextColor="#333333" />
+
+            <toolkit:MediaElement Grid.Row="0"
+                                        x:Name="videoPlayer"
+                                        Source="embed://Resources/Raw/belem.mp4"
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        ShouldAutoPlay="False"
+                                        ShouldShowPlaybackControls="True"
+                                        />
+
+                <Label Grid.Row="1"
+                        Text="Moumouni BELEM\n Pyrénées, South of France"
+                        FontSize="Small"
+                        TextColor="#666666"
+                        HorizontalOptions="Center" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Moumouni BELEM" FontAttributes="Bold" />
+                        <Span Text=", in the Pyrénées, South of France" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
         </VerticalStackLayout>
     </ScrollView>

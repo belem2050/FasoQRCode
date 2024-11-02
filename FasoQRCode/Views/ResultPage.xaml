@@ -25,7 +25,7 @@
 
         <!-- Button Section with Rounded Buttons -->
         <HorizontalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
-            <Button Text="Copy"
+            <Button ImageSource="{Binding Path=SaveIcon}"
                     BackgroundColor="#007ACC"
                     TextColor="White"
                     WidthRequest="100"
@@ -33,17 +33,16 @@
                     CornerRadius="25"
                     Command="{Binding CopyCommand}" />
 
-            <Button Text="Open Link"
-                    BackgroundColor="#34C759"
-                    TextColor="White"
+            <Button ImageSource="{Binding Path=OpenLinkIcon}"
+                    BackgroundColor="Transparent"
                     WidthRequest="100"
                     HeightRequest="50"
                     CornerRadius="25"
                     Command="{Binding OpenLinkCommand}" />
 
-            <Button Text="Share"
-                    BackgroundColor="#FF9500"
-                    TextColor="White"
+            <Button ImageSource="{Binding Path=ShareResultcon}"
+                    BackgroundColor="Transparent"
+                    
                     WidthRequest="100"
                     HeightRequest="50"
                     CornerRadius="25"
