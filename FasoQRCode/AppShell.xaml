@@ -30,18 +30,9 @@
     <FlyoutItem Title="More About Burkina Faso" Icon="burkina_faso_know_more.png">
         <ShellContent ContentTemplate="{DataTemplate pages:PageAboutBurkinaFaso}" />
     </FlyoutItem>
-    <!-- Standalone MenuItem with icon -->
-
 
     <MenuItem Text="Share" IconImageSource="share.png"
-              Command="{Binding ShareCommand}" />
+              Command="{Binding ShareAppCommand}" />
     
-
-    <MenuItem Text="Logout" IconImageSource="logout.png"
-            Command="{Binding LogoutCommand}" />
-
-
-
-
 
 </Shell>

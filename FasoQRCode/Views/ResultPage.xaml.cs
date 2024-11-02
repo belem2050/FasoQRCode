@@ -5,6 +5,9 @@ namespace FasoQRCode.Views
     [QueryProperty(nameof(ResultText), "resultText")]
     public partial class ResultPage : ContentPage
     {
+        private readonly HistoryService _historyService = new HistoryService();
+
+        public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
         private string _resultText;
         public string ResultText
         {
@@ -20,6 +23,10 @@ namespace FasoQRCode.Views
         {
             InitializeComponent();
             BindingContext = this;
+            Manager.HistoryItems.Add(Manager.CurrentHistoryItem);
+
+            _historyService.SaveHistory(Manager.HistoryItems);
+            Manager.HistoryItems = _historyService.LoadHistory();
         }
 
         [RelayCommand]
@@ -43,7 +50,7 @@ namespace FasoQRCode.Views
         }
 
         [RelayCommand]
-        public async Task Share()
+        public async Task ShareResult()
         {
             if (string.IsNullOrEmpty(ResultText))
             {
@@ -57,15 +64,8 @@ namespace FasoQRCode.Views
                 Title = "Share Scanned Result"
             };
 
-            //try
-            //{
-            //    await share.Default.RequestAsync(shareTextRequest);
-            //}
-            //catch (Exception ex)
-            //{
-            //    await DisplayAlert("Sharing Failed", ex.Message, "OK");
-            //}
-        }
+            await Share.Default.RequestAsync(shareTextRequest);
 
+        }
     }
 }
