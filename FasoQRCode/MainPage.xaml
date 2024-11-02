@@ -14,7 +14,6 @@
         <toolkit:MediaElement x:Name="soundPlayer" 
                            IsVisible="False" 
                             IsEnabled="True"
-                        
                            Source="embed://Resources/Raw/success_scan.mp3"/>
 
         <!-- Camera View -->
@@ -24,28 +23,28 @@
                                        x:Name="barcodeReader"
                                        IsTorchOn="{Binding Path=Manager.Settings.IsTorchOn}"
                                        CameraLocation="{Binding Path=Manager.Settings.DefaultCamera}"
-                                       BarcodesDetected="barcodeReader_BarcodesDetected"/>
+                                     />
 
         <AbsoluteLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
             <!-- Top Border -->
             <BoxView Color="Red" HeightRequest="2" WidthRequest="300"
-             AbsoluteLayout.LayoutBounds="0.5,0,300,2"
-             AbsoluteLayout.LayoutFlags="PositionProportional" />
+                     AbsoluteLayout.LayoutBounds="0.5,0,300,2"
+                     AbsoluteLayout.LayoutFlags="PositionProportional" />
 
             <!-- Bottom Border -->
             <BoxView Color="Red" HeightRequest="2" WidthRequest="300"
-             AbsoluteLayout.LayoutBounds="0.5,1,300,2"
-             AbsoluteLayout.LayoutFlags="PositionProportional" />
+                     AbsoluteLayout.LayoutBounds="0.5,1,300,2"
+                     AbsoluteLayout.LayoutFlags="PositionProportional" />
 
             <!-- Left Border -->
             <BoxView Color="Red" WidthRequest="2" HeightRequest="300"
-             AbsoluteLayout.LayoutBounds="0,0.5,2,300"
-             AbsoluteLayout.LayoutFlags="PositionProportional" />
+                     AbsoluteLayout.LayoutBounds="0,0.5,2,300"
+                     AbsoluteLayout.LayoutFlags="PositionProportional" />   
 
             <!-- Right Border -->
             <BoxView Color="Red" WidthRequest="2" HeightRequest="300"
-             AbsoluteLayout.LayoutBounds="1,0.5,2,300"
-             AbsoluteLayout.LayoutFlags="PositionProportional" />
+                     AbsoluteLayout.LayoutBounds="1,0.5,2,300"
+                     AbsoluteLayout.LayoutFlags="PositionProportional" />
         </AbsoluteLayout>
 
 
@@ -54,34 +53,23 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0"
-                    Margin="50,-10,0,0"
-                    HorizontalOptions="End"
-                    VerticalOptions="Start"
-                    BackgroundColor="Transparent"
-                    FontSize="Header"
-                    FontAttributes="Bold"
-                    FontAutoScalingEnabled="True"
-                    ImageSource="image.png"
-                    HeightRequest="50"
-                    Command="{Binding Path=ScanbyImageCommand, Mode=OneWay}"/>
             
-            <Button Grid.Column="1"
-                    HorizontalOptions="Center"
+            <Button Grid.Column="0"
                     ImageSource="{Binding Path=Manager.Settings.FlashIcon}"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
+                    HorizontalOptions="End"
+                    Margin="0,0,20,0"
                     Command="{Binding Path=ToggleTorchCommand, Mode=OneWay}"/>
             
             <Button Grid.Column="2"
-                    Margin="0,0,50,0"
-                    HorizontalOptions="Start"
                     BackgroundColor="Transparent"
                     ImageSource="rotate.png"
                     HeightRequest="50"
+                    HorizontalOptions="Start"
+                    Margin="20,0,0,0"
+                    
                     Command="{Binding Path=SwapCameraCommand, Mode=OneWay}"/>
         </Grid>
 
@@ -91,7 +79,8 @@
                      Margin="0,0,0,30"
                      Orientation="Horizontal"
                      HorizontalOptions="FillAndExpand"
-                     VerticalOptions="End">
+                     VerticalOptions="End"
+                     IsVisible="Collapse">
             <Button VerticalOptions="End"
                     FontSize="Title"
                     HorizontalOptions="Start"

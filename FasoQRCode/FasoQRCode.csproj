@@ -59,20 +59,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\accept.png" />
 	  <None Remove="Resources\Images\banfora.jpg" />
 	  <None Remove="Resources\Images\blaise.jpeg" />
 	  <None Remove="Resources\Images\blaise_compaore.avif" />
 	  <None Remove="Resources\Images\burkina_faso.png" />
 	  <None Remove="Resources\Images\burkina_faso_know_more.png" />
+	  <None Remove="Resources\Images\check.png" />
+	  <None Remove="Resources\Images\copy.png" />
 	  <None Remove="Resources\Images\flash.png" />
 	  <None Remove="Resources\Images\flash_off.png" />
 	  <None Remove="Resources\Images\history.png" />
 	  <None Remove="Resources\Images\image.png" />
 	  <None Remove="Resources\Images\image_gallery.png" />
 	  <None Remove="Resources\Images\logout.png" />
+	  <None Remove="Resources\Images\open.png" />
 	  <None Remove="Resources\Images\qr_code.png" />
 	  <None Remove="Resources\Images\roch_kabore.jpg" />
 	  <None Remove="Resources\Images\rotate.png" />
+	  <None Remove="Resources\Images\save.png" />
+	  <None Remove="Resources\Images\send.png" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\share.png" />
 	  <None Remove="Resources\Images\sindou.jpg" />
@@ -81,7 +87,12 @@
 	  <None Remove="Resources\Images\write.png" />
 	  <None Remove="Resources\Images\zoom_in.png" />
 	  <None Remove="Resources\Images\zoom_out.png" />
+	  <None Remove="Resources\Raw\belem.mp4" />
 	  <None Remove="Resources\Raw\success_scan.mp3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Raw\belem.mp4" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -90,10 +101,15 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="SkiaSharp" Version="2.88.8" />
+		<PackageReference Include="Xamarin.MediaGallery" Version="2.2.1" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\PageCreateQR.xaml.cs">
+	    <DependentUpon>PageCreateQR.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\PageSettings.xaml.cs">
 	    <DependentUpon>PageSettings.xaml</DependentUpon>
 	  </Compile>

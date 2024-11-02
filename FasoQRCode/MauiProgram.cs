@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
 using CommunityToolkit.Maui;
+using FasoQRCode.ViewModels;
+using FasoQRCode.ViewsModels.Pages;
 
 namespace FasoQRCode
 {
@@ -26,13 +28,19 @@ namespace FasoQRCode
     		builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainPageVM>();
 
             builder.Services.AddTransient<ResultPage>();
+            builder.Services.AddTransient<PageResultVM>();
 
             builder.Services.AddTransient<PageSettings>();
-            builder.Services.AddTransient<SettingsVM>();
+            builder.Services.AddTransient<PageSettingsVM>();
 
             builder.Services.AddTransient<PageHistory>();
+            builder.Services.AddTransient<PageHistoryVM>();
+
+            builder.Services.AddTransient<PageAboutBurkinaFaso>();
+            builder.Services.AddTransient<PageAboutBurkinaFasoVM>();
             return builder.Build();
         }
     }

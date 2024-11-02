@@ -15,7 +15,7 @@
 
 
 
-    <FlyoutItem Title="Create my QR" Icon="write.png">
+    <FlyoutItem Title="Make a QR" Icon="write.png">
         <ShellContent ContentTemplate="{DataTemplate pages:PageCreateQR}" />
     </FlyoutItem>
 
