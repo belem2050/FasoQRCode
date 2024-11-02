@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using FasoQRCode.Models;
-using FasoQRCode.Views;
+using FasoQRCode.Models.Data;
 
 namespace FasoQRCode
 {
@@ -27,47 +26,60 @@ namespace FasoQRCode
         {
             var first = e.Results?.FirstOrDefault();
 
-            if (first is null)
+            if (first is null || !barcodeReader.IsDetecting)
             {
                 return;
             }
-            barcodeReader.IsDetecting = false;
+
             await Dispatcher.DispatchAsync(async () =>
             {
+                barcodeReader.IsDetecting = false;
+               
                 try
                 {
+
+                    string qrThumbnailfilePath = await CaptureAndSaveQrImageAsync();
                     if (Manager.Settings.IsSoundEnabled)
                     {
                         soundPlayer.Stop();
                         soundPlayer.Play();
                     }
-
                     string encodedResult = Uri.EscapeDataString(first.Value);
-
-                    Manager.HistoryItems.Add(new HistoryItem
+                    Manager.CurrentHistoryItem = new HistoryItem
                     {
-                        Title = "New Scan",  
                         Date = DateTime.Now,
                         Content = first.Value,
-                        QrThumbnail = "qr_placeholder.png"  
-                    });
+                        QrThumbnail = qrThumbnailfilePath
+                    };
 
                     await Shell.Current.GoToAsync($"//{nameof(MainPage)}/ResultPage?resultText={encodedResult}");
-                    //.ConfigureAwait(true);
                 }
                 catch (Exception ex)
                 {
-                    //Debug.WriteLine($"Navigation error: {ex.Message}");
-                }
-                finally
-                {
-                    barcodeReader.IsDetecting=true;
+                    ///
                 }
             });
         }
 
+        public async Task<string> CaptureAndSaveQrImageAsync()
+        {
+            try
+            {
+                string fileName = $"QR_{DateTime.Now:yyyyMMdd_HHmmss}.jpg";
+                string filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+                using var fileStream = File.Create(filePath);
+                var capture = await barcodeReader.CaptureAsync();
+                await capture.CopyToAsync(fileStream);
+
+                return filePath;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
         [RelayCommand]
-        public void ScanbyImage()
+        public async Task ScanbyImage()
         {
             soundPlayer.Stop();
             soundPlayer.Play();
@@ -100,16 +112,14 @@ namespace FasoQRCode
             }
         }
 
-        protected override void OnAppearing()
+    protected override void OnAppearing()
         {
             base.OnAppearing();
-            // Ensure the camera starts detecting when the page appears
             barcodeReader.IsDetecting = true;
         }
 
         protected override void OnDisappearing()
         {
-            // Optionally stop detecting when leaving the page
             barcodeReader.IsDetecting = false;
             base.OnDisappearing();
         }
