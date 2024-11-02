@@ -31,7 +31,7 @@
                     WidthRequest="100"
                     HeightRequest="50"
                     CornerRadius="25"
-                    Command="{Binding CopyAsyncCommand}" />
+                    Command="{Binding CopyCommand}" />
 
             <Button Text="Open Link"
                     BackgroundColor="#34C759"
@@ -39,7 +39,7 @@
                     WidthRequest="100"
                     HeightRequest="50"
                     CornerRadius="25"
-                    Command="{Binding OpenLinkAsyncCommand}" />
+                    Command="{Binding OpenLinkCommand}" />
 
             <Button Text="Share"
                     BackgroundColor="#FF9500"
@@ -47,7 +47,7 @@
                     WidthRequest="100"
                     HeightRequest="50"
                     CornerRadius="25"
-                    Command="{Binding ShareAsyncCommand}" />
+                    Command="{Binding ShareResultCommand}" />
         </HorizontalStackLayout>
 
     </VerticalStackLayout>
