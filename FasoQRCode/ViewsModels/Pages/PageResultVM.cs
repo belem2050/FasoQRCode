@@ -14,7 +14,7 @@ namespace FasoQRCode.ViewModels
         private string resultText;
 
         [ObservableProperty]
-        private ImageSource saveIcon = ImageSource.FromFile("copy.png");
+        private ImageSource saveIcon = ImageSource.FromFile("save.png");
 
         [ObservableProperty]
         private ImageSource openLinkIcon = ImageSource.FromFile("open.png");
