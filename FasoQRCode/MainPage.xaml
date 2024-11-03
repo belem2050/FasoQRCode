@@ -11,19 +11,28 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <toolkit:MediaElement x:Name="soundPlayer" 
-                           IsVisible="False" 
-                            IsEnabled="True"
-                           Source="embed://Resources/Raw/success_scan.mp3"/>
 
-        <!-- Camera View -->
+        <toolkit:MediaElement x:Name="soundPlayer" 
+                                IsVisible="False" 
+                                IsEnabled="True"
+                                Source="embed://Resources/Raw/success_scan.mp3"/>
+            <!-- Camera View -->
         <zxing:CameraBarcodeReaderView Grid.Row="0"
                                        Grid.Column="0"
                                        Grid.RowSpan="3"
+                                       IsEnabled="True"
                                        x:Name="barcodeReader"
                                        IsTorchOn="{Binding Path=Manager.Settings.IsTorchOn}"
-                                       CameraLocation="{Binding Path=Manager.Settings.DefaultCamera, Mode=TwoWay}"
-                                     />
+                                       CameraLocation="{Binding Path=Manager.Settings.DefaultCamera, Mode=TwoWay}"/>
+        
+        <!--<toolkit:CameraView Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.RowSpan="3"
+                            IsEnabled="False"
+                            x:Name="cameraView"
+                            IsVisible="{Binding Path=CameraVisiblity}"
+                            IsTorchOn="{Binding Path=Manager.Settings.IsTorchOn}"
+                            ZoomFactor="{Binding Path=ZoomRate}"/>-->
 
         <AbsoluteLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
             <!-- Top Border -->
@@ -53,23 +62,31 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Button Grid.Column="0"
-                    ImageSource="{Binding Path=Manager.Settings.FlashIcon}"
-                    BackgroundColor="Transparent"
-                    HeightRequest="50"
+                    Margin="50,0,0,0"
                     HorizontalOptions="End"
-                    Margin="0,0,20,0"
+                    VerticalOptions="Start"
+                    FontSize="Header"
+                    FontAttributes="Bold"
+                    FontAutoScalingEnabled="True"
+                    ImageSource="image.png"
+                    HeightRequest="50"
+                    Command="{Binding Path=ScanbyImageCommand, Mode=OneWay}"/>
+
+            <Button Grid.Column="1"
+                    HorizontalOptions="Center"
+                    ImageSource="{Binding Path=Manager.Settings.FlashIcon}"
+                    HeightRequest="50"
                     Command="{Binding Path=ToggleTorchCommand, Mode=OneWay}"/>
-            
+
             <Button Grid.Column="2"
-                    BackgroundColor="Transparent"
+                    Margin="0,0,50,0"
+                    HorizontalOptions="Start"
                     ImageSource="rotate.png"
                     HeightRequest="50"
-                    HorizontalOptions="Start"
-                    Margin="20,0,0,0"
-                    
                     Command="{Binding Path=SwapCameraCommand, Mode=OneWay}"/>
         </Grid>
 
@@ -79,29 +96,31 @@
                      Margin="0,0,0,30"
                      Orientation="Horizontal"
                      HorizontalOptions="FillAndExpand"
-                     VerticalOptions="End"
-                     IsVisible="Collapse">
+                     VerticalOptions="End">
             <Button VerticalOptions="End"
                     FontSize="Title"
                     HorizontalOptions="Start"
                     HeightRequest="55"
+                    Margin="0,0,-10,-7"
                     ImageSource="zoom_out.png"
-                    BackgroundColor="Transparent"/>
+                    BackgroundColor="Transparent"
+                    Command="{Binding Path=ZoomOutCommand}"/>
 
             <Slider x:Name="zoomer"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
                     Minimum="0"
-                    Maximum="100"
+                    Maximum="1"
                     Margin="0,0,0,0"
-                    Value="{Binding Path=ZoomRate, Mode=OneWay}"/>
+                    Value="{Binding Path=SliderValue}"/>
 
             <Button VerticalOptions="Center"
                     FontSize="Title"
                     HorizontalOptions="End"
                     HeightRequest="55"
                     BackgroundColor="Transparent"
-                    ImageSource="zoom_in.png"/>
+                    ImageSource="zoom_in.png"
+                    Command="{Binding Path=ZoomInCommand}"/>
         </StackLayout>
     </Grid>
 </ContentPage>

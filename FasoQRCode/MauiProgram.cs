@@ -1,11 +1,10 @@
-﻿using FasoQRCode.Views;
+﻿using CommunityToolkit.Maui;
+using FasoQRCode.ViewModels;
+using FasoQRCode.Views;
 using FasoQRCode.ViewsModels;
+using FasoQRCode.ViewsModels.Pages;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
-
-using CommunityToolkit.Maui;
-using FasoQRCode.ViewModels;
-using FasoQRCode.ViewsModels.Pages;
 
 namespace FasoQRCode
 {
@@ -25,7 +24,7 @@ namespace FasoQRCode
                 .UseMauiCommunityToolkitMediaElement();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainPageVM>();

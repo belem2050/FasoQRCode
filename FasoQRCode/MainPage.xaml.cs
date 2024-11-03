@@ -1,6 +1,4 @@
-﻿using ZXing.Net.Maui.Controls;
-
-namespace FasoQRCode
+﻿namespace FasoQRCode
 {
     public partial class MainPage : ContentPage
     {
@@ -8,7 +6,7 @@ namespace FasoQRCode
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageVM(barcodeReader, soundPlayer);
+            BindingContext = new MainPageVM(barcodeReader, soundPlayer/*, cameraView*/);
         }
 
         protected override void OnAppearing()

@@ -2,9 +2,7 @@
 using FasoQRCode.Models.Data;
 using FasoQRCode.ViewsModels;
 using System.Collections.ObjectModel;
-using ZXing;
 using ZXing.Net.Maui;
-using ZXing.Net.Maui.Controls;
 
 namespace FasoQRCode
 {
@@ -19,9 +17,6 @@ namespace FasoQRCode
         public ObservableCollection<HistoryItem> HistoryItems { get; set; } = new ObservableCollection<HistoryItem>();
 
         private readonly HistoryService _historyService = new HistoryService();
-
-        private readonly IBarcodeReader barcodeReader;
-
 
         private SystemManager()
         {
@@ -49,7 +44,6 @@ namespace FasoQRCode
               Settings.FlashIcon = Settings.IsTorchOn ? ImageSource.FromFile("flash.png") : ImageSource.FromFile("flash_off.png");
             }
 
-            CameraView cameraView = new CameraView();
         }
 
         static public SystemManager GetInstance()

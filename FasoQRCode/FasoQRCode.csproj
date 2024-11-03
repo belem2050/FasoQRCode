@@ -67,12 +67,15 @@
 	  <None Remove="Resources\Images\burkina_faso_know_more.png" />
 	  <None Remove="Resources\Images\check.png" />
 	  <None Remove="Resources\Images\copy.png" />
+	  <None Remove="Resources\Images\fespaco.jpg" />
+	  <None Remove="Resources\Images\flag.png" />
 	  <None Remove="Resources\Images\flash.png" />
 	  <None Remove="Resources\Images\flash_off.png" />
 	  <None Remove="Resources\Images\history.png" />
 	  <None Remove="Resources\Images\image.png" />
 	  <None Remove="Resources\Images\image_gallery.png" />
 	  <None Remove="Resources\Images\logout.png" />
+	  <None Remove="Resources\Images\martyrs.jpg" />
 	  <None Remove="Resources\Images\open.png" />
 	  <None Remove="Resources\Images\qr_code.png" />
 	  <None Remove="Resources\Images\roch_kabore.jpg" />
