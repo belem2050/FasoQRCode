@@ -92,7 +92,6 @@ namespace FasoQRCode
             {
                 return;
             }
-            _barcodeReader.BarcodesDetected -= _barcodeReader_BarcodesDetected;
 
             await App.Current.MainPage.Dispatcher.DispatchAsync(async () =>
             {
