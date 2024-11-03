@@ -5,12 +5,6 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
-            <!-- Page Title -->
-            <Label Text="Scan History" 
-                   FontSize="Title" 
-                   FontAttributes="Bold" 
-                   HorizontalOptions="Center" 
-                   TextColor="DarkBlue" />
 
             <!-- History List -->
             <CollectionView ItemsSource="{Binding Path=Manager.HistoryItems}" 

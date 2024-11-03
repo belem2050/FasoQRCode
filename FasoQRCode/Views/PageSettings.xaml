@@ -2,6 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="FasoQRCode.Views.PageSettings"
+             BackgroundImageSource="martyrs.jpg"
+             InputTransparent="False"
+             BackgroundColor="Beige"
              Title="Settings">
 
 
@@ -29,19 +32,19 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Dark Mode -->
-                <Label Text="Dark Mode" Grid.Row="0" VerticalOptions="Center" />
+                <Label Text="Dark Mode" Grid.Row="0" VerticalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                 <Switch x:Name="darkModeSwitch" Grid.Row="0" Grid.Column="1" 
                         HorizontalOptions="End" 
                         IsToggled="{Binding Path=IsDarkModeEnabled}" />
 
                 <!-- Vibration -->
-                <Label Text="Enable Vibration on Scan" Grid.Row="1" VerticalOptions="Center"/>
+                <Label Text="Enable Vibration on Scan" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                 <Switch x:Name="vibrationSwitch" Grid.Row="1" Grid.Column="1" 
                         HorizontalOptions="End" 
                         IsToggled="{Binding Path=IsVibrationEnabled}" />
 
                 <!-- Sound -->
-                <Label Text="Sound on Scan" Grid.Row="2" VerticalOptions="Center"/>
+                <Label Text="Sound on Scan" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                 <Switch x:Name="soundSwitch" Grid.Row="2" Grid.Column="1" 
                         HorizontalOptions="End" 
                         IsToggled="{Binding Path=IsSoundEnabled}" />
@@ -69,11 +72,12 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Default Camera -->
-                <Label Text="Default Camera" Grid.Row="0" VerticalOptions="Center"/>
+                <Label Text="Default Camera" Grid.Row="0" VerticalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                 <Picker x:Name="cameraPicker" 
                         Grid.Row="0" Grid.Column="1" 
                         Title="Select Camera" 
-                        HorizontalOptions="End" 
+                        HorizontalOptions="End"
+                        FontSize="Medium"
                         SelectedItem="{Binding Path=Camera}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -84,13 +88,13 @@
                 </Picker>
 
                 <!-- Auto-Focus -->
-                <Label Text="Auto-Focus" Grid.Row="1" VerticalOptions="Center"/>
+                <Label Text="Auto-Focus" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                 <Switch x:Name="autoFocusSwitch" Grid.Row="1" Grid.Column="1" 
                         HorizontalOptions="End" 
                         IsToggled="{Binding Path=IsAutoFocusEnabled}" />
 
                 <!-- Torch -->
-                <Label Text="Torch" Grid.Row="2" VerticalOptions="Center"/>
+                <Label Text="Torch" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                 <Switch x:Name="torchSwitch" Grid.Row="2" Grid.Column="1" 
                         HorizontalOptions="End" 
                         IsToggled="{Binding Path=IsTorchOn, Mode=TwoWay}" />

@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FasoQRCode.Views.ResultPage"
              Title="Scan Result"
+             BackgroundImageSource="fespaco.jpg"
              BackgroundColor="#f4f4f9">
 
     <VerticalStackLayout Padding="20" Spacing="30" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
@@ -26,7 +27,7 @@
         <!-- Button Section with Rounded Buttons -->
         <HorizontalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
             <Button ImageSource="{Binding Path=SaveIcon}"
-                    BackgroundColor="#007ACC"
+                    BackgroundColor="BlueViolet"
                     TextColor="White"
                     WidthRequest="100"
                     HeightRequest="50"
@@ -34,15 +35,14 @@
                     Command="{Binding CopyCommand}" />
 
             <Button ImageSource="{Binding Path=OpenLinkIcon}"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="BlueViolet"
                     WidthRequest="100"
                     HeightRequest="50"
                     CornerRadius="25"
                     Command="{Binding OpenLinkCommand}" />
 
             <Button ImageSource="{Binding Path=ShareResultcon}"
-                    BackgroundColor="Transparent"
-                    
+                    BackgroundColor="BlueViolet"
                     WidthRequest="100"
                     HeightRequest="50"
                     CornerRadius="25"

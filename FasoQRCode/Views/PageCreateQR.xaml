@@ -1,25 +1,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
-             x:Class="FasoQRCode.Views.PageCreateQR" 
+             x:Class="FasoQRCode.Views.PageCreateQR"
+             BackgroundImageSource="fespaco.jpg"
              Title="Make your own QR code">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
       
             <!-- Input Field for QR Code Content -->
             <Label Text="Enter Text or URL" 
-                   FontSize="Medium" 
-                   TextColor="Black"/>
+                   FontSize="Medium"
+                   FontAttributes="Bold"/>
+            
             <Entry Placeholder="Type your content here..." 
                    FontSize="Medium" 
-                   x:Name="inputEntry"
                    Text="{Binding Path=QrContent, Mode=TwoWay}"
                    HorizontalOptions="FillAndExpand"/>
 
             <!-- QR Code Size Selector -->
             <Label Text="QR Code Size" 
                    FontSize="Medium" 
-                   TextColor="Black" />
+                   FontAttributes="Bold"/>
             <Picker x:Name="sizePicker" 
                     Title="Select size" 
                     SelectedItem="{Binding QrSize}" 
@@ -59,12 +60,11 @@
                 <Button ImageSource="{Binding Path=SaveIcon, Mode=OneWay}"
                         Command="{Binding SaveQrCodeInGalleryCommand}" 
                         HeightRequest="70"
-                        Background="Transparent"/>
+                        Background="BlueViolet"/>
                 
                 <Button ImageSource="{Binding Path=ShareResultcon, Mode=OneWay}"
                         Command="{Binding ShareQrCodeCommand}" 
-                        Background="Transparent"
-                        TextColor="White"
+                        Background="BlueViolet"
                         HorizontalOptions="CenterAndExpand"
                         HeightRequest="70"/>
             </HorizontalStackLayout>
