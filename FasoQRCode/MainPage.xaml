@@ -22,7 +22,7 @@
                                        Grid.RowSpan="3"
                                        x:Name="barcodeReader"
                                        IsTorchOn="{Binding Path=Manager.Settings.IsTorchOn}"
-                                       CameraLocation="{Binding Path=Manager.Settings.DefaultCamera}"
+                                       CameraLocation="{Binding Path=Manager.Settings.DefaultCamera, Mode=TwoWay}"
                                      />
 
         <AbsoluteLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">

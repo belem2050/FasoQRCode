@@ -13,9 +13,8 @@ namespace FasoQRCode
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-            barcodeReader = new CameraBarcodeReaderView();
             barcodeReader.IsDetecting = true;
+            base.OnAppearing();
         }
 
         protected override void OnDisappearing()
@@ -25,6 +24,3 @@ namespace FasoQRCode
         }
     }
 }
-
-
-    

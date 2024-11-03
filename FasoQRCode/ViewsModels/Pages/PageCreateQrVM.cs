@@ -3,6 +3,14 @@ using CommunityToolkit.Mvvm.Input;
 using FasoQRCode.Models.Data;
 using ZXing.Net.Maui.Controls;
 
+#if ANDROID
+    using Android.Content;
+    using Android.Provider;
+    using Android.Graphics;
+    using Android.Net;
+#endif
+
+
 namespace FasoQRCode.ViewModels.Pages
 {
     public partial class PageCreateQrVM : ObservableObject
@@ -17,13 +25,11 @@ namespace FasoQRCode.ViewModels.Pages
         [ObservableProperty]
         private int width;
 
-
         [ObservableProperty]
         private ImageSource saveIcon = ImageSource.FromFile("save.png");
 
         [ObservableProperty]
         private ImageSource shareResultcon = ImageSource.FromFile("send.png");
-
 
         public string QrContent
         {
@@ -40,7 +46,6 @@ namespace FasoQRCode.ViewModels.Pages
                 SaveIcon = ImageSource.FromFile("save.png");
             }
         }
-
         private string qrContent;
 
         public string QrSize
@@ -83,16 +88,13 @@ namespace FasoQRCode.ViewModels.Pages
         }
 
         [RelayCommand(CanExecute = nameof(CanSaveOrShare))]
-        private async Task SaveQrCodeInGallery()
+        public async Task SaveQrCodeInGallery()
         {
             try
             {
                 (string fileName, string filePath) = await GenerateAndSaveQrCodeImageInHistory();
-             
-                var mediaPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), fileName);
-                File.Copy(filePath, mediaPath, true);
 
-                SaveIcon = ImageSource.FromFile("accept.png");
+                await SaveImageToGalleryAsync(filePath, fileName);
             }
             catch(Exception ex)
             {
@@ -100,12 +102,53 @@ namespace FasoQRCode.ViewModels.Pages
             }
         }
 
-        [RelayCommand(CanExecute = nameof(CanSaveOrShare))]
-        private async Task ShareQrCode()
+
+public async Task SaveImageToGalleryAsync(string filePath, string fileName)
+    {
+#if ANDROID
+    try
+    {
+        // Ensure we have a valid bitmap (replace this with your actual file path)
+        Bitmap bitmap = BitmapFactory.DecodeFile(filePath);
+
+        // Prepare MediaStore values
+        var contentValues = new ContentValues();
+        contentValues.Put(MediaStore.Images.Media.InterfaceConsts.DisplayName, fileName);
+        contentValues.Put(MediaStore.Images.Media.InterfaceConsts.MimeType, "image/jpeg");
+        contentValues.Put(MediaStore.Images.Media.InterfaceConsts.RelativePath, "Pictures/FasoQRCode");
+
+        // Insert the image using ContentResolver
+        var uri = Android.App.Application.Context.ContentResolver.Insert(MediaStore.Images.Media.ExternalContentUri, contentValues);
+        if (uri != null)
+        {
+            using (var outputStream = Android.App.Application.Context.ContentResolver.OpenOutputStream(uri))
+            {
+                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, outputStream);
+            }
+        }
+
+        // Update the UI to show success
+        SaveIcon = ImageSource.FromFile("accept.png"); // Update SaveIcon to indicate success
+    }
+    catch (Exception ex)
+    {
+        // Handle any exceptions (e.g., logging)
+        Console.WriteLine($"Error saving image to gallery: {ex.Message}");
+    }
+#else
+        // For other platforms (Windows, iOS)
+        var mediaPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), fileName);
+        File.Copy(filePath, mediaPath, true);
+        SaveIcon = ImageSource.FromFile("accept.png");
+#endif
+    }
+
+
+    [RelayCommand(CanExecute = nameof(CanSaveOrShare))]
+        public async Task ShareQrCode()
         {
             try
             {
-
                 (string fileName, string filePath) = await GenerateAndSaveQrCodeImageInHistory();
 
                 await Share.Default.RequestAsync(new ShareFileRequest
@@ -113,8 +156,6 @@ namespace FasoQRCode.ViewModels.Pages
                     Title = "Share QR Code",
                     File = new ShareFile(filePath)
                 } );
-
-
             }
             catch (Exception ex)
             {
@@ -131,10 +172,10 @@ namespace FasoQRCode.ViewModels.Pages
             return false;
         }
 
-        public async Task<(string fileName, string filePath)> GenerateAndSaveQrCodeImageInHistory()
+        private async Task<(string fileName, string filePath)> GenerateAndSaveQrCodeImageInHistory()
         {
             string fileName = $"QR_{DateTime.Now:yyyyMMdd_HHmmss}.png";
-            string filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+            string filePath = System.IO.Path.Combine(FileSystem.AppDataDirectory, fileName);
             using var fileStream = File.Create(filePath);
             var qrCodeImage = await _barcodeGenerator.CaptureAsync();
 

@@ -13,7 +13,7 @@ namespace FasoQRCode.ViewsModels
         private bool isSoundEnabled = true;
 
         [ObservableProperty]
-        private CameraLocation defaultCamera;
+        private CameraLocation defaultCamera = CameraLocation.Rear;
 
         [ObservableProperty]
         private string camera = "Rear";
@@ -28,7 +28,7 @@ namespace FasoQRCode.ViewsModels
         public ImageSource flashIcon = ImageSource.FromFile("flash_off.png");
 
         [ObservableProperty]
-        private bool isDarkModeEnabled;
+        private bool isDarkModeEnabled = (Application.Current.UserAppTheme == AppTheme.Dark);
 
         public PageSettingsVM()
         {
