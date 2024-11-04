@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using FasoQRCode.ViewModels;
+using FasoQRCode.ViewModels.Pages;
 using FasoQRCode.Views;
 using FasoQRCode.ViewsModels;
 using FasoQRCode.ViewsModels.Pages;
@@ -39,7 +40,10 @@ namespace FasoQRCode
             builder.Services.AddTransient<PageHistoryVM>();
 
             builder.Services.AddTransient<PageAboutBurkinaFaso>();
-            builder.Services.AddTransient<PageAboutBurkinaFasoVM>();
+            builder.Services.AddTransient<PageAboutBurkinaFasoVM>(); 
+
+            builder.Services.AddTransient<PageCreateQR>();
+            builder.Services.AddTransient<PageCreateQrVM>(); 
             return builder.Build();
         }
     }
