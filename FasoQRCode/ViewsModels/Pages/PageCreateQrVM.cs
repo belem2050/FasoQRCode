@@ -17,7 +17,7 @@ namespace FasoQRCode.ViewModels.Pages
     {
         public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
         private readonly HistoryService _historyService = new HistoryService();
-        private BarcodeGeneratorView _barcodeGenerator;
+        private BarcodeGeneratorView _barcodeGenerator = new BarcodeGeneratorView();
         
         [ObservableProperty]
         private int height;
@@ -81,9 +81,8 @@ namespace FasoQRCode.ViewModels.Pages
         [ObservableProperty]
         private ImageSource qrCodeImage;
 
-        public PageCreateQrVM(BarcodeGeneratorView barcodeGenerator)
+        public PageCreateQrVM()
         {
-            _barcodeGenerator = barcodeGenerator;
             SaveIcon = ImageSource.FromFile("save.png");
         }
 

@@ -4,11 +4,11 @@ namespace FasoQRCode.Views
 {
     public partial class ResultPage : ContentPage
     {
-        public ResultPage()
+        public ResultPage(MainPageVM vm)
         {
             InitializeComponent();
            
-            BindingContext = new PageResultVM();
+            BindingContext = vm;
         }
     }
 }

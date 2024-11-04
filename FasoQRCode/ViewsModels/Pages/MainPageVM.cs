@@ -12,8 +12,8 @@ namespace FasoQRCode
     {
         public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
 
-        private CameraBarcodeReaderView _barcodeReader;
-        private MediaElement _soundPlayer;
+        private CameraBarcodeReaderView _barcodeReader =  new CameraBarcodeReaderView();
+        private MediaElement _soundPlayer = new MediaElement();
         //private CommunityToolkit.Maui.Views.CameraView _cameraView;
 
         [ObservableProperty]
@@ -28,18 +28,14 @@ namespace FasoQRCode
         [ObservableProperty]
         private double sliderValue;
 
-        public MainPageVM(CameraBarcodeReaderView barcodeReader, MediaElement soundPlayer/*, CommunityToolkit.Maui.Views.CameraView cameraView*/)
+        public MainPageVM()
         {
-            _barcodeReader = barcodeReader;
-            _soundPlayer = soundPlayer;
-            BarcodeReaderVisiblity = Visibility.Visible;
             _barcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
             {
-                Formats = ZXing.Net.Maui.BarcodeFormat.QrCode,
+                Formats = ZXing.Net.Maui.BarcodeFormat.QrCode | ZXing.Net.Maui.BarcodeFormat.Codabar | ZXing.Net.Maui.BarcodeFormat.PharmaCode,
                 AutoRotate = Manager.Settings.IsAutoFocusEnabled,
-                Multiple = true,
+                Multiple = false,
                 TryHarder = true,
-                
             };
             _barcodeReader.BarcodesDetected += _barcodeReader_BarcodesDetected;
             this.PropertyChanging += MainPageVM_PropertyChanging;
@@ -174,6 +170,14 @@ namespace FasoQRCode
                     using SKBitmap skiaBitmap = SKBitmap.Decode(pickedFilestream);
                     BarcodeReaderGeneric barcodeReader = new BarcodeReaderGeneric();
                     Result result = barcodeReader.Decode(skiaBitmap.Bytes, skiaBitmap.Width, skiaBitmap.Height, RGBLuminanceSource.BitmapFormat.Unknown);
+
+                    if(result == null) // nothing found
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "QR code or BarCode not found!", "OK");
+                        await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+
+                        return;
+                    }
 
                     await App.Current.MainPage.Dispatcher.DispatchAsync(async () =>
                     {

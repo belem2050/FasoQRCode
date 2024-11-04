@@ -12,16 +12,13 @@
         </Grid.RowDefinitions>
 
 
-        <toolkit:MediaElement x:Name="soundPlayer" 
-                                IsVisible="False" 
-                                IsEnabled="True"
+        <toolkit:MediaElement   IsVisible="False" 
                                 Source="embed://Resources/Raw/success_scan.mp3"/>
             <!-- Camera View -->
         <zxing:CameraBarcodeReaderView Grid.Row="0"
                                        Grid.Column="0"
                                        Grid.RowSpan="3"
                                        IsEnabled="True"
-                                       x:Name="barcodeReader"
                                        IsTorchOn="{Binding Path=Manager.Settings.IsTorchOn}"
                                        CameraLocation="{Binding Path=Manager.Settings.DefaultCamera, Mode=TwoWay}"/>
         
@@ -68,10 +65,6 @@
             <Button Grid.Column="0"
                     Margin="50,0,0,0"
                     HorizontalOptions="End"
-                    VerticalOptions="Start"
-                    FontSize="Header"
-                    FontAttributes="Bold"
-                    FontAutoScalingEnabled="True"
                     ImageSource="image.png"
                     HeightRequest="50"
                     Command="{Binding Path=ScanbyImageCommand, Mode=OneWay}"/>
@@ -97,6 +90,7 @@
                      Orientation="Horizontal"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="End">
+            
             <Button VerticalOptions="End"
                     FontSize="Title"
                     HorizontalOptions="Start"

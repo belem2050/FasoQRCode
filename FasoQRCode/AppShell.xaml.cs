@@ -12,6 +12,8 @@ namespace FasoQRCode
             BindingContext =this;
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));
+            Routing.RegisterRoute(nameof(PageHistory), typeof(PageHistory));
+            Routing.RegisterRoute(nameof(PageSettings), typeof(PageSettings));
         }
 
         [RelayCommand]

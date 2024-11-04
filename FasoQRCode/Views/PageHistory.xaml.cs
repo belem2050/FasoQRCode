@@ -4,9 +4,9 @@ namespace FasoQRCode.Views;
 
 public partial class PageHistory : ContentPage
 {
-	public PageHistory()
+	public PageHistory(PageHistoryVM vm)
 	{
 		InitializeComponent();
-		BindingContext = new PageHistoryVM();
+        BindingContext = vm;
 	}
 }

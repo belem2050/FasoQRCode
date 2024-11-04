@@ -1,13 +1,12 @@
 using FasoQRCode.ViewModels.Pages;
-using ZXing;
 
 namespace FasoQRCode.Views;
 
 public partial class PageCreateQR : ContentPage
 {
-	public PageCreateQR()
+	public PageCreateQR(PageCreateQrVM vm)
 	{
 		InitializeComponent();
-		BindingContext = new PageCreateQrVM(barcodeGenerator);
+		BindingContext = vm;
 	}
 }
