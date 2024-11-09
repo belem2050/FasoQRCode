@@ -33,8 +33,7 @@ namespace FasoQRCode
             _barcodeReader = barcodeReader;
             _barcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
             {
-                Formats = ZXing.Net.Maui.BarcodeFormat.QrCode,
-                //Formats = ZXing.Net.Maui.BarcodeFormat.QrCode | ZXing.Net.Maui.BarcodeFormat.Codabar | ZXing.Net.Maui.BarcodeFormat.PharmaCode,
+                Formats = ZXing.Net.Maui.BarcodeFormat.QrCode | ZXing.Net.Maui.BarcodeFormat.Codabar,
                 AutoRotate = Manager.Settings.IsAutoFocusEnabled,
                 Multiple = false,
                 TryHarder = true,
