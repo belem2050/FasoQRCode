@@ -4,9 +4,9 @@ namespace FasoQRCode.Views;
 
 public partial class PageCreateQR : ContentPage
 {
-	public PageCreateQR(PageCreateQrVM vm)
+	public PageCreateQR()
 	{
 		InitializeComponent();
-		BindingContext = vm;
+		BindingContext = new PageCreateQrVM(barcodeGenerator);
 	}
 }

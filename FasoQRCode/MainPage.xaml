@@ -19,6 +19,7 @@
                                        Grid.Column="0"
                                        Grid.RowSpan="3"
                                        IsEnabled="True"
+                                       x:Name="barcodeReader"
                                        IsTorchOn="{Binding Path=Manager.Settings.IsTorchOn}"
                                        CameraLocation="{Binding Path=Manager.Settings.DefaultCamera, Mode=TwoWay}"/>
         

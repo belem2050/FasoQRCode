@@ -18,7 +18,7 @@ namespace FasoQRCode.ViewModels.Pages
     {
         public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
         private readonly HistoryService _historyService = new HistoryService();
-        private BarcodeGeneratorView _barcodeGenerator = new BarcodeGeneratorView();
+        private BarcodeGeneratorView _barcodeGenerator;
         
         [ObservableProperty]
         private int height;
@@ -82,8 +82,9 @@ namespace FasoQRCode.ViewModels.Pages
         [ObservableProperty]
         private ImageSource qrCodeImage;
 
-        public PageCreateQrVM()
+        public PageCreateQrVM(BarcodeGeneratorView barcodeGenerator)
         {
+            _barcodeGenerator = barcodeGenerator;
             SaveIcon = ImageSource.FromFile("save.png");
         }
 
@@ -183,11 +184,6 @@ public async Task SaveImageToGalleryAsync(string filePath, string fileName)
             if (MailAddress.TryCreate(QrContent, out var address))
             {
                 QrContent = "mailto:" + address.Address;
-            }
-
-            if (int.TryParse(QrContent, out var output))
-            {
-                QrContent = "sms:" + output;
             }
             var qrCodeImage = await _barcodeGenerator.CaptureAsync();
 

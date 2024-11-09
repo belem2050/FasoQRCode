@@ -12,7 +12,7 @@ namespace FasoQRCode
     {
         public SystemManager Manager { get; private set; } = SystemManager.GetInstance();
 
-        private CameraBarcodeReaderView _barcodeReader =  new CameraBarcodeReaderView();
+        private CameraBarcodeReaderView _barcodeReader;
         private MediaElement _soundPlayer = new MediaElement();
         //private CommunityToolkit.Maui.Views.CameraView _cameraView;
 
@@ -28,12 +28,13 @@ namespace FasoQRCode
         [ObservableProperty]
         private double sliderValue;
 
-        public MainPageVM()
+        public MainPageVM(CameraBarcodeReaderView barcodeReader )
         {
+            _barcodeReader = barcodeReader;
             _barcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
             {
-                //Formats = ZXing.Net.Maui.BarcodeFormat.QrCode,
-                Formats = ZXing.Net.Maui.BarcodeFormat.QrCode | ZXing.Net.Maui.BarcodeFormat.Codabar | ZXing.Net.Maui.BarcodeFormat.PharmaCode,
+                Formats = ZXing.Net.Maui.BarcodeFormat.QrCode,
+                //Formats = ZXing.Net.Maui.BarcodeFormat.QrCode | ZXing.Net.Maui.BarcodeFormat.Codabar | ZXing.Net.Maui.BarcodeFormat.PharmaCode,
                 AutoRotate = Manager.Settings.IsAutoFocusEnabled,
                 Multiple = false,
                 TryHarder = true,

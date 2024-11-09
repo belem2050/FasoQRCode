@@ -1,15 +1,12 @@
-﻿
-using ZXing.Net.Maui.Controls;
-
-namespace FasoQRCode
+﻿namespace FasoQRCode
 {
     public partial class MainPage : ContentPage
     {
 
-        public MainPage(MainPageVM vm)
+        public MainPage()
         {
             InitializeComponent();
-            BindingContext = vm;
+            BindingContext = new MainPageVM(barcodeReader);
         }
     }
 }
