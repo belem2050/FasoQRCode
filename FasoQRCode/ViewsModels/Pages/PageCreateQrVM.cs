@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FasoQRCode.Models.Data;
+using System.Net.Mail;
 using ZXing.Net.Maui.Controls;
 
 #if ANDROID
-    using Android.Content;
-    using Android.Provider;
-    using Android.Graphics;
-    using Android.Net;
+using Android.Content;
+using Android.Provider;
+using Android.Graphics;
+using Android.Net;
 #endif
 
 
@@ -176,14 +177,26 @@ public async Task SaveImageToGalleryAsync(string filePath, string fileName)
             string fileName = $"QR_{DateTime.Now:yyyyMMdd_HHmmss}.png";
             string filePath = System.IO.Path.Combine(FileSystem.AppDataDirectory, fileName);
             using var fileStream = File.Create(filePath);
+
+            string ContenToSave = QrContent;
+
+            if (MailAddress.TryCreate(QrContent, out var address))
+            {
+                QrContent = "mailto:" + address.Address;
+            }
+
+            if (int.TryParse(QrContent, out var output))
+            {
+                QrContent = "sms:" + output;
+            }
             var qrCodeImage = await _barcodeGenerator.CaptureAsync();
 
             await qrCodeImage.CopyToAsync(fileStream);
-
+    
             Manager.HistoryItems.Add(new HistoryItem
             {
                 Date = DateTime.Now,
-                Content = QrContent,
+                Content = ContenToSave,
                 QrThumbnail = filePath
             });
 

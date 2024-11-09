@@ -14,7 +14,7 @@ namespace FasoQRCode.ViewModels
         private string resultText;
 
         [ObservableProperty]
-        private ImageSource saveIcon = ImageSource.FromFile("save.png");
+        private ImageSource copyIcon = ImageSource.FromFile("copy.png");
 
         [ObservableProperty]
         private ImageSource openLinkIcon = ImageSource.FromFile("open.png");
@@ -43,7 +43,6 @@ namespace FasoQRCode.ViewModels
             if (Uri.TryCreate(ResultText, UriKind.Absolute, out var uri))
             {
                 await Launcher.Default.OpenAsync(uri);
-                SaveIcon = ImageSource.FromFile("check.png");
             }
             else
             {

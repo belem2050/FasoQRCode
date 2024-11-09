@@ -32,6 +32,7 @@ namespace FasoQRCode
         {
             _barcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
             {
+                //Formats = ZXing.Net.Maui.BarcodeFormat.QrCode,
                 Formats = ZXing.Net.Maui.BarcodeFormat.QrCode | ZXing.Net.Maui.BarcodeFormat.Codabar | ZXing.Net.Maui.BarcodeFormat.PharmaCode,
                 AutoRotate = Manager.Settings.IsAutoFocusEnabled,
                 Multiple = false,
@@ -149,6 +150,9 @@ namespace FasoQRCode
         public void ToggleTorch()
         {
             Manager.Settings.IsTorchOn = !Manager.Settings.IsTorchOn;
+
+     
+       
         }
 
         [RelayCommand]

@@ -26,7 +26,7 @@
 
         <!-- Button Section with Rounded Buttons -->
         <HorizontalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
-            <Button ImageSource="{Binding Path=SaveIcon}"
+            <Button ImageSource="{Binding Path=CopyIcon}"
                     BackgroundColor="BlueViolet"
                     TextColor="White"
                     WidthRequest="100"

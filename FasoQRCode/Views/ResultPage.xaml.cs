@@ -4,7 +4,7 @@ namespace FasoQRCode.Views
 {
     public partial class ResultPage : ContentPage
     {
-        public ResultPage(MainPageVM vm)
+        public ResultPage(PageResultVM vm)
         {
             InitializeComponent();
            
