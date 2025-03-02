@@ -25,7 +25,3 @@ This project is open-source and can be used and modified freely.
 Let’s work together to drive technological innovation in Burkina Faso!  
 
 #FasoQRCodeReader #TechForBurkina #Innovation #QRcode  
-
----
-
-Would you like any modifications or additions? 😊
